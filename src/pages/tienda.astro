@@ -1,0 +1,127 @@
+---
+import '../styles/global.css';
+// Configuración de metadatos de la página de Tienda
+---
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda - Hierbas y Raíces</title>
+  <meta name="description" content="Selección curada de libros, aceites esenciales y herramientas de herbolaria tradicional con enfoque histórico y cultural." />
+</head>
+<body class="bg-[#f5f5dc]">
+
+  <!-- HEADER -->
+  <header class="bg-[#e8f0e3] py-12 px-4 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-[#2d5016] mb-4">Hierbas y Raíces</h1>
+    <p class="text-lg text-gray-700">Enciclopedia de Plantas Medicinales Tradicionales</p>
+    
+    <!-- BOTONES DEL MENÚ SUPERIOR -->
+    <a href="/" class="inline-block mt-6 bg-[#4a7c23] text-white font-semibold py-3 px-8 rounded-full hover:bg-[#3d661e] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+      ← Volver al Inicio
+    </a>
+    <a href="/blog" class="inline-block mt-6 ml-4 bg-[#4a7c23] text-white font-semibold py-3 px-8 rounded-full hover:bg-[#3d661e] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+      Ir al Blog →
+    </a>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL DE LA TIENDA -->
+  <section class="py-8 px-4">
+    <div class="max-w-6xl mx-auto">
+      
+      <h2 class="text-3xl font-bold text-[#2d5016] text-center mb-4">Tienda de Recomendaciones</h2>
+      <p class="text-center text-gray-700 mb-8 max-w-2xl mx-auto">
+        Explora nuestra selección curada de libros, aceites esenciales y herramientas relacionadas con el patrimonio etnobotánico. 
+        <br><span class="text-sm italic text-stone-500">*Al comprar a través de estos enlaces, apoyas el mantenimiento de este proyecto sin costo extra para ti.</span>
+      </p>
+
+      <!-- REJILLA DE 6 PRODUCTOS REALES -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- PRODUCTO 1 -->
+        <article class="planta-card bg-white rounded-xl shadow-lg p-6 border-2 border-[#c8e6c9] hover:border-[#81c784] transition-all flex flex-col">
+          <img src="https://m.media-amazon.com/images/I/71Y-m4DvfkL._SY522_.jpg" alt="Enciclopedia de plantas medicinales" class="w-full h-48 object-contain bg-white rounded-lg mb-4 p-2" />
+          <h3 class="text-xl font-bold text-[#33691e] mb-2">Enciclopedia de plantas medicinales</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">
+            Descubra cómo elaborar y utilizar remedios naturales a partir de 560 hierbas y remedios cultivados en casa para mejorar su salud y bienestar.
+          </p>
+          <a href="https://link.amazon/B0bn1jVpY" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center bg-[#ff9900] text-[#232f3e] font-semibold px-5 py-2 rounded-lg hover:bg-[#e88a00] transition-colors">
+            Ver en Amazon →
+          </a>
+        </article>
+
+        <!-- PRODUCTO 2 -->
+        <article class="planta-card bg-white rounded-xl shadow-lg p-6 border-2 border-[#c8e6c9] hover:border-[#81c784] transition-all flex flex-col">
+          <img src="https://m.media-amazon.com/images/I/71nx3mjRVxL._SY522_.jpg" alt="Los Remedios Naturales Olvidados de la Abuela" class="w-full h-48 object-contain bg-white rounded-lg mb-4 p-2" />
+          <h3 class="text-xl font-bold text-[#33691e] mb-2">Los Remedios Naturales Olvidados de la Abuela</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">
+            500+ recetas de medicina casera y herbolaria ancestral. Guía completa de plantas medicinales y sabiduría tradicional.
+          </p>
+          <a href="https://link.amazon/B09gQzFuT" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center bg-[#ff9900] text-[#232f3e] font-semibold px-5 py-2 rounded-lg hover:bg-[#e88a00] transition-colors">
+            Ver en Amazon →
+          </a>
+        </article>
+
+        <!-- PRODUCTO 3 -->
+        <article class="planta-card bg-white rounded-xl shadow-lg p-6 border-2 border-[#c8e6c9] hover:border-[#81c784] transition-all flex flex-col">
+          <img src="https://m.media-amazon.com/images/I/71gemFCOb1L._SY522_.jpg" alt="Aceites esenciales y aromaterapia" class="w-full h-48 object-contain bg-white rounded-lg mb-4 p-2" />
+          <h3 class="text-xl font-bold text-[#33691e] mb-2">Aceites esenciales y aromaterapia</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">
+            Guía completa con 800 recetas naturales para la salud, la belleza y el hogar. Fáciles de realizar en casa o a nivel profesional.
+          </p>
+          <a href="https://link.amazon/B03LaVKaP" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center bg-[#ff9900] text-[#232f3e] font-semibold px-5 py-2 rounded-lg hover:bg-[#e88a00] transition-colors">
+            Ver en Amazon →
+          </a>
+        </article>
+
+        <!-- PRODUCTO 4 -->
+        <article class="planta-card bg-white rounded-xl shadow-lg p-6 border-2 border-[#c8e6c9] hover:border-[#81c784] transition-all flex flex-col">
+          <img src="https://m.media-amazon.com/images/I/61Zfgy9XbIL._SY522_.jpg" alt="Los aceites esenciales antiestrés" class="w-full h-48 object-contain bg-white rounded-lg mb-4 p-2" />
+          <h3 class="text-xl font-bold text-[#33691e] mb-2">Los aceites esenciales antiestrés</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">
+            Descubre qué es el estrés y cómo los aceites esenciales te ayudan a reducir o eliminar sus efectos negativos con aplicaciones sencillas.
+          </p>
+          <a href="https://link.amazon/B08XLwyb7" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center bg-[#ff9900] text-[#232f3e] font-semibold px-5 py-2 rounded-lg hover:bg-[#e88a00] transition-colors">
+            Ver en Amazon →
+          </a>
+        </article>
+
+        <!-- PRODUCTO 5 -->
+        <article class="planta-card bg-white rounded-xl shadow-lg p-6 border-2 border-[#c8e6c9] hover:border-[#81c784] transition-all flex flex-col">
+          <img src="https://m.media-amazon.com/images/I/71ub3EKv-oL._SY522_.jpg" alt="50 Recetas de Infusiones y Tés Naturales" class="w-full h-48 object-contain bg-white rounded-lg mb-4 p-2" />
+          <h3 class="text-xl font-bold text-[#33691e] mb-2">50 Recetas de Infusiones y Tés Naturales</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">
+            Combinaciones herbales tradicionales para cuidar el cuerpo, fortalecer el sistema inmune y relajarse en la comodidad de tu hogar.
+          </p>
+          <a href="https://link.amazon/B00Q79kAz" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center bg-[#ff9900] text-[#232f3e] font-semibold px-5 py-2 rounded-lg hover:bg-[#e88a00] transition-colors">
+            Ver en Amazon →
+          </a>
+        </article>
+
+        <!-- PRODUCTO 6 -->
+        <article class="planta-card bg-white rounded-xl shadow-lg p-6 border-2 border-[#c8e6c9] hover:border-[#81c784] transition-all flex flex-col">
+          <img src="https://m.media-amazon.com/images/I/61YZgJ+TGUL._SX522_.jpg" alt="Juego de mortero y mano de madera de acacia" class="w-full h-48 object-contain bg-white rounded-lg mb-4 p-2" />
+          <h3 class="text-xl font-bold text-[#33691e] mb-2">Mortero y mano de madera de acacia</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">
+            Hecho a mano. Perfecto para moler hierbas secas, ajo, nueces, especias y para la preparación tradicional de remedios herbales.
+          </p>
+          <a href="https://link.amazon/B0alne5km" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center bg-[#ff9900] text-[#232f3e] font-semibold px-5 py-2 rounded-lg hover:bg-[#e88a00] transition-colors">
+            Ver en Amazon →
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CON DISCLAIMER -->
+  <footer class="bg-[#e8f0e3] text-center p-6 mt-8 border-t-2 border-[#c8e6c9]">
+    <p class="text-sm text-gray-700 max-w-3xl mx-auto mb-3">
+      <strong>Disclaimer:</strong> Esta información tiene fines históricos y culturales, y no constituye una recomendación de uso, dosis ni tratamiento. Consulte a un profesional de la salud antes de usar cualquier planta con fines terapéuticos.
+    </p>
+    <p class="text-xs text-gray-600">&copy; 2026 Hierbas y Raíces. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

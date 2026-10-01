@@ -1,0 +1,64 @@
+---
+import { supabase } from '../../lib/supabase';
+import '../../styles/global.css';
+
+// Obtener artículos del blog
+const { data: posts, error } = await supabase
+  .from('blog_posts')
+  .select('*')
+  .order('published_at', { ascending: false });
+
+if (error) {
+  console.error('Error al cargar el blog:', error);
+}
+---
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Hierbas y Raíces</title>
+</head>
+<body class="bg-[#f5f5dc]">
+  
+  <header class="bg-[#e8f0e3] py-12 px-4 text-center">
+    <!-- NOMBRE DEL BLOG CORREGIDO -->
+    <h1 class="text-4xl md:text-5xl font-bold text-[#2d5016] mb-4">Blog Hierbas y Raíces</h1>
+    <p class="text-lg text-gray-700 max-w-2xl mx-auto">Descubre los secretos, historia y usos tradicionales de las plantas medicinales.</p>
+    
+    <!-- BOTONES DE NAVEGACIÓN -->
+    <div class="mt-6 flex justify-center gap-4 flex-wrap">
+      <a href="/" class="inline-block text-[#558b2f] hover:underline font-semibold py-3 px-4">← Volver al inicio</a>
+      <a href="/tienda" class="inline-block bg-[#ff9900] text-[#232f3e] font-semibold py-3 px-8 rounded-full hover:bg-[#e88a00] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+        Ir a la Tienda →
+      </a>
+    </div>
+  </header>
+
+  <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto grid gap-8">
+      {posts?.map((post) => (
+        <article class="bg-white rounded-xl shadow-lg p-6 border-2 border-[#c8e6c9] hover:border-[#81c784] transition-all">
+          <span class="inline-block bg-[#dcedc8] text-[#33691e] text-xs px-3 py-1 rounded-full mb-3">
+            {post.tags || 'General'}
+          </span>
+          <h2 class="text-2xl font-bold text-[#33691e] mb-2">
+            <a href={`/blog/${post.slug}`} class="hover:underline">{post.title}</a>
+          </h2>
+          <p class="text-gray-600 mb-4">{post.excerpt || 'Haz clic para leer más sobre esta planta medicinal.'}</p>
+          <div class="flex justify-between items-center text-sm text-gray-500">
+            <span>
+              {post.published_at ? new Date(post.published_at).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Fecha no disponible'}
+            </span>
+            <a href={`/blog/${post.slug}`} class="text-[#558b2f] font-semibold hover:underline">Leer artículo completo →</a>
+          </div>
+        </article>
+      ))}
+      
+      {(!posts || posts.length === 0) && (
+        <p class="text-center text-gray-600 text-lg">Aún no hay artículos publicados. ¡Vuelve pronto!</p>
+      )}
+    </div>
+  </section>
+</body>
+</html>

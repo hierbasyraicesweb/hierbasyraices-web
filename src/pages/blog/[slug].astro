@@ -1,0 +1,104 @@
+---
+import { supabase } from '../../lib/supabase';
+import '../../styles/global.css';
+
+// 1. FUNCIÓN OBLIGATORIA PARA RUTAS DINÁMICAS EN ASTRO
+export async function getStaticPaths() {
+  const { data: posts, error } = await supabase
+    .from('blog_posts')
+    .select('slug');
+  
+  if (error) {
+    console.error('Error al obtener slugs:', error);
+    return [];
+  }
+  
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+// 2. OBTENER EL SLUG DE LA URL
+const { slug } = Astro.params;
+
+// 3. BUSCAR EL ARTÍCULO EN SUPABASE
+const { data: post, error: postError } = await supabase
+  .from('blog_posts')
+  .select('*')
+  .eq('slug', slug)
+  .single();
+
+if (postError || !post) {
+  return Astro.redirect('/blog');
+}
+
+// 4. METADATOS PARA SEO
+const seoTitle = `${post.title} | Blog Hierbas y Raíces`;
+const seoDescription = post.excerpt || `Descubre los usos tradicionales de ${post.title}.`;
+const canonicalURL = `https://hierbasyraices.com/blog/${post.slug}`;
+---
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{seoTitle}</title>
+  <meta name="description" content={seoDescription} />
+  <link rel="canonical" href={canonicalURL} />
+</head>
+<body class="bg-[#f5f5dc]">
+
+  <nav class="bg-[#e8f0e3] py-4 px-4">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="/blog" class="text-[#558b2f] hover:underline font-semibold">← Volver al listado del blog</a>
+      <a href="/tienda" class="inline-block bg-[#ff9900] text-[#232f3e] font-semibold py-2 px-6 rounded-full hover:bg-[#e88a00] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+        Ir a la Tienda →
+      </a>
+    </div>
+  </nav>
+
+  <article class="max-w-4xl mx-auto py-12 px-4 bg-white shadow-xl my-8 rounded-xl border border-[#c8e6c9]">
+    <header class="mb-8 border-b border-gray-200 pb-6">
+      <span class="inline-block bg-[#dcedc8] text-[#33691e] text-xs px-3 py-1 rounded-full mb-4">
+        {post.tags || 'Herbolaria Tradicional'}
+      </span>
+      <h1 class="text-3xl md:text-4xl font-bold text-[#2d5016] mb-4">{post.title}</h1>
+      <div class="flex items-center text-sm text-gray-500 gap-4">
+        <time datetime={post.published_at}>
+          {post.published_at ? new Date(post.published_at).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Fecha no disponible'}
+        </time>
+      </div>
+    </header>
+
+    {post.featured_image && (
+      <img 
+        src={post.featured_image} 
+        alt={post.title}
+        class="w-full h-64 md:h-96 object-cover rounded-lg mb-8"
+        loading="lazy"
+      />
+    )}
+
+    <!-- AQUÍ ESTÁ LA CLAVE: set:html hace que el texto con formato se lea perfectamente -->
+    <div class="prose prose-lg max-w-none text-gray-800 leading-relaxed" set:html={post.content} />
+
+    <footer class="mt-12 pt-6 border-t border-gray-200">
+      <p class="text-sm text-gray-500 italic mb-4">
+        Nota: La información contenida en este artículo tiene fines históricos, culturales y educativos. No sustituye el consejo médico profesional.
+      </p>
+      <a href="/blog" class="inline-block bg-[#558b2f] text-white px-4 py-2 rounded-lg hover:bg-[#33691e] transition-colors">← Explorar más artículos</a>
+    </footer>
+  </article>
+
+</body>
+</html>
+
+<!-- Estilos para que el texto del blog se vea bonito -->
+<style is:global>
+  .prose p { margin-bottom: 1.25rem; line-height: 1.7; }
+  .prose h2 { color: #33691e; font-size: 1.75rem; font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #dcedc8; padding-bottom: 0.5rem; }
+  .prose h3 { color: #558b2f; font-size: 1.4rem; font-weight: bold; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+  .prose ul, .prose ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
+  .prose li { margin-bottom: 0.5rem; }
+  .prose strong { color: #2d5016; }
+</style>

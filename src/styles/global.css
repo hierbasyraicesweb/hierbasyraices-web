@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================
+   PROTECCIÓN ANTI-PLAGIO Y COPIA
+   ========================================= */
+/* Desactiva la selección de texto en toda la web */
+body {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10/11 */
+  user-select: none; /* Estándar */
+  -webkit-touch-callout: none; /* iOS Safari */
+}
+
+/* Permite seleccionar texto SOLO en el buscador y formularios */
+input, textarea {
+  -webkit-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}

@@ -1,0 +1,123 @@
+---
+import { supabase } from '../lib/supabase';
+import '../styles/global.css';
+
+// 1. Obtener plantas de Supabase
+const { data: plantas, error } = await supabase
+  .from('plants')
+  .select('*')
+  .order('nombre_principal', { ascending: true });
+
+if (error) {
+  console.error('Error cargando plantas:', error);
+}
+
+const totalPlantas = plantas?.length || 0;
+---
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hierbas y Raíces</title>
+</head>
+<body class="bg-[#f5f5dc]">
+  <header class="bg-[#e8f0e3] py-12 px-4 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-[#2d5016] mb-4">Hierbas y Raíces</h1>
+    <p class="text-lg text-gray-700">Enciclopedia de Plantas Medicinales Tradicionales</p>
+    
+    <!-- BOTONES DEL MENÚ SUPERIOR -->
+    <a href="/blog" class="inline-block mt-6 bg-[#4a7c23] text-white font-semibold py-3 px-8 rounded-full hover:bg-[#3d661e] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+      Ir al Blog →
+    </a>
+    <a href="/tienda" class="inline-block mt-6 ml-4 bg-[#ff9900] text-[#232f3e] font-semibold py-3 px-8 rounded-full hover:bg-[#e88a00] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+      Ir a la Tienda →
+    </a>
+    
+  </header>
+
+  <section class="py-8 px-4 bg-[#f0f7e9]">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-white rounded-xl shadow-lg p-6">
+        <input 
+          type="text" 
+          id="buscador" 
+          placeholder="Ej: dolor de estómago, quemadura, nervios, insomnio..."
+          class="w-full p-4 border-2 border-[#7cb342] rounded-lg text-lg focus:outline-none focus:border-[#558b2f]"
+        />
+        <p class="text-sm text-gray-600 mt-3">💡 Busca por dolencia, síntoma o uso. Sin importar acentos ni mayúsculas.</p>
+        <p id="contador" class="text-center mt-4 text-[#558b2f] font-semibold">Mostrando {totalPlantas} plantas</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-8 px-4">
+    <div id="grid-plantas" class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {plantas?.map((planta) => (
+        <article 
+          class="planta-card bg-white rounded-xl shadow-lg p-6 border-2 border-[#c8e6c9] hover:border-[#81c784] transition-all"
+          data-busqueda={planta.busqueda || ''}
+          data-nombre={planta.nombre_principal || ''}
+          data-cientifico={planta.nombre_cientifico || ''}
+          data-categoria={planta.categoria || ''}
+        >
+          <h2 class="text-2xl font-bold text-[#33691e] mb-2">{planta.nombre_principal}</h2>
+          {planta.nombre_cientifico && <p class="text-sm italic text-gray-600 mb-3">{planta.nombre_cientifico}</p>}
+          {planta.categoria && <span class="inline-block bg-[#dcedc8] text-[#33691e] text-xs px-3 py-1 rounded-full mb-4">{planta.categoria}</span>}
+          <a href={`/planta/${planta.id}`} class="inline-block bg-[#689f38] text-white px-5 py-2 rounded-lg hover:bg-[#558b2f] transition-colors">Ver ficha completa →</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- AQUÍ ESTÁ LA CLAVE: define:vars pasa las variables del servidor al cliente -->
+  <script define:vars={{ plantas }}>
+    const inputBuscador = document.getElementById('buscador');
+    const gridPlantas = document.getElementById('grid-plantas');
+    const contador = document.getElementById('contador');
+    const todasLasTarjetas = document.querySelectorAll('.planta-card');
+
+    function normalizar(texto) {
+      if (!texto) return '';
+      return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+
+    function buscarPlantas() {
+      const textoBusqueda = normalizar(inputBuscador.value);
+      
+      if (textoBusqueda === '') {
+        todasLasTarjetas.forEach(card => card.style.display = 'block');
+        contador.textContent = 'Mostrando ' + todasLasTarjetas.length + ' plantas';
+        return;
+      }
+
+      let coincidencias = 0;
+      const palabras = textoBusqueda.split(' ').filter(p => p.length > 0);
+      
+      todasLasTarjetas.forEach(function(card) {
+        const busquedaCard = normalizar(card.getAttribute('data-busqueda'));
+        const nombreCard = normalizar(card.getAttribute('data-nombre'));
+        const categoriaCard = normalizar(card.getAttribute('data-categoria'));
+        const textoCompleto = busquedaCard + ' ' + nombreCard + ' ' + categoriaCard;
+        
+        const coincide = palabras.every(palabra => textoCompleto.includes(palabra));
+        
+        if (coincide) {
+          card.style.display = 'block';
+          coincidencias++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      contador.textContent = 'Mostrando ' + coincidencias + ' planta' + (coincidencias !== 1 ? 's' : '');
+      
+      if (coincidencias === 0) {
+        gridPlantas.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-xl text-gray-600">No encontramos resultados para esa búsqueda.</p><p class="text-sm text-gray-500 mt-2">Prueba con otros términos como "digestivo", "ansiedad" o "piel".</p></div>';
+      }
+    }
+
+    inputBuscador.addEventListener('input', buscarPlantas);
+  </script>
+</body>
+</html>
