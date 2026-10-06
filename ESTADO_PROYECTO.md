@@ -1,9 +1,9 @@
 ================================================================
 ESTADO MAESTRO DEL PROYECTO - HIERBAS Y RAICES
 ================================================================
-Fecha de actualizacion: 29 de septiembre de 2026 (Sesión 6 - Final)
-Version del documento: 2.6 (Tienda completada con productos reales)
-Dominio: hierbasyraices.com (comprado, pendiente de despliegue)
+Fecha de actualizacion: 03 de octubre de 2026 (Sesion 8 - Dominio Conectado y Flujo de Trabajo Definido)
+Version del documento: 3.0 (Sitio en Produccion con Dominio Propio Activo)
+Dominio: hierbasyraices.com (Namecheap -> Vercel, DNS configurado y VALIDO)
 
 ================================================================
 1. IDENTIDAD Y MARCO LEGAL DEL PROYECTO
@@ -24,25 +24,29 @@ una recomendacion de uso, dosis ni tratamiento. Consulte a un
 profesional de la salud antes de usar cualquier planta con fines 
 terapeuticos."
 
+PROTECCION DE AUTORIA:
+- Se establecera aviso de copyright en el footer: "© 2026 Hierbas y Raíces. Todos los derechos reservados."
+- La propiedad intelectual se consolida mediante indexacion en Google Search Console (pendiente) y Sitemap.xml.
+
 ================================================================
 2. STACK TECNICO (HERRAMIENTAS Y PLATAFORMAS)
 ================================================================
 FUNCIONANDO ACTUALMENTE:
 - Base de datos: Supabase (Postgres, plan gratuito)
-- Frontend: Astro (sitio estatico) + Vite (dev server local)
-- Estilos: Tailwind CSS + colores personalizados (beige/verde/naranja)
-- Editor de codigo: VS Code
-- Entorno de ejecucion: Node.js + npm
-- Control de versiones: Git + GitHub
-- Servidor local: localhost:4321
+- Frontend: Astro (sitio estatico/SSR) + Vite (dev server local)
+- Estilos: Tailwind CSS + DaisyUI + colores personalizados (beige/verde/naranja)
+- Editor de codigo: Visual Studio Code (VS Code)
+- Control de versiones: Git + GitHub (Usuario: hierbasyraicesweb)
+- Hosting en Produccion: Vercel (Despliegue automatico desde GitHub)
 - Version de Astro: v7.2.9
 - Monetizacion: Amazon Associates (ID: hierbasyraice-20, pago via Global66)
+- Correo del proyecto: hierbasyraices.web@gmail.com
 
 PENDIENTE DE CONECTAR/CONFIGURAR:
-- Vercel o Netlify (hosting en produccion)
-- Google Search Console y Google Analytics 4
-- Mailchimp o Brevo (newsletter)
-- Google AdSense, Ko-fi
+- ✅ Conexion del dominio personalizado (Namecheap -> Vercel): COMPLETADO.
+- Google Search Console y Google Analytics 4 (Para consolidar autoria y metricas).
+- Mailchimp o Brevo (newsletter).
+- Google AdSense, Ko-fi.
 
 ================================================================
 3. ESTRUCTURA DE BASE DE DATOS (SUPABASE)
@@ -58,8 +62,12 @@ TABLA "blog_posts" (Columnas en INGLES) - DETALLE CRITICO:
 title, slug, excerpt, content, featured_image, published_at, tags, 
 related_plants, meta_title, meta_description, faq_schema.
 
-ADVERTENCIA: Las dos tablas tienen nombres de columna en idiomas 
-diferentes. Tenerlo siempre presente al escribir consultas SQL.
+TABLA "failed_searches" (PENDIENTE DE CREAR):
+id, search_term, timestamp, count. (Para registrar que buscan los 
+usuarios y no encuentran, guiando la creacion de nuevo contenido).
+
+ADVERTENCIA: Las dos tablas principales tienen nombres de columna en 
+idiomas diferentes. Tenerlo siempre presente al escribir consultas SQL.
 
 ================================================================
 4. LO QUE YA FUNCIONA (ESTADO ACTUAL)
@@ -69,6 +77,9 @@ FUNCIONALIDADES BASE:
 - 97 plantas corregidas via SQL (formato numerado por categoria).
 - Buscador inteligente en tiempo real (filtra sin tildes, busca por 
   palabras sueltas y dolencias, muestra contador y mensaje "sin resultados").
+  *NOTA: En el plan gratuito de Vercel, la primera busqueda tras un 
+  periodo de inactividad puede tener un ligero retraso ("cold start"). 
+  Las busquedas subsiguientes funcionan instantaneamente.
 - Diseno responsive con tema verde/cafe/beige personalizado.
 - Pagina individual de articulo renderizando correctamente con set:html.
 
@@ -82,6 +93,14 @@ MEJORAS DE NAVEGACION Y CONTENIDO REALIZADAS:
 - TIENDA COMPLETADA: Pagina /tienda.astro con 6 productos reales de 
   Amazon Afiliados (libros, aceites, tés y mortero), con imágenes y 
   enlaces de rastreo (tag=hierbasyraice-20) funcionando correctamente.
+
+DESPLIEGUE Y PRODUCCION:
+- Repositorio GitHub publico: hierbasyraicesweb/hierbasyraices-web
+- Adaptador de Vercel instalado (@astrojs/vercel) y configurado.
+- Variables de entorno de Supabase configuradas en Vercel como tipo "Config".
+- URL de produccion activa: https://hierbasyraices.com (Dominio principal)
+- URL de respaldo: https://hierbasyraices-web.vercel.app
+- Flujo automatico: Cada "Commit" y "Push" en GitHub despliega la web en ~30s.
 
 ================================================================
 5. GUIA MAESTRA DE FORMATO PARA ARTICULOS DEL BLOG
@@ -108,25 +127,49 @@ ERRORES COMUNES A EVITAR EN SQL:
 4. Olvidar ::jsonb al final del faq_schema.
 
 ================================================================
-6. PLAN DE PUBLICACION DE ARTICULOS
+6. PLAN DE PUBLICACION DE ARTICULOS Y FLUJO DE TRABAJO
 ================================================================
 FRECUENCIA RECOMENDADA: 1-2 articulos por semana.
 PROXIMOS ARTICULOS SUGERIDOS: Lavanda, Menta, Salvia, Eucalipto, Jengibre.
-CRITERIOS: Popularidad de busqueda, riqueza historica, diversidad geografica.
+
+PLANTILLAS DE SOLICITUD AL ASISTENTE (COPIAR Y PEGAR PARA EVITAR ITERACIONES):
+1. Para nuevo articulo de blog:
+   "Hola, hoy toca crear el artículo de blog para la planta: [NOMBRE]. 
+   Genera el contenido en HTML puro siguiendo la Guía Maestra (Sección 5), 
+   con enfoque histórico/cultural, disclaimer al final, mínimo 1000 palabras 
+   y FAQ Schema en JSON. Al final, dame el comando SQL exacto para `blog_posts`."
+
+2. Para nuevo producto en tienda:
+   "Hola, quiero agregar un nuevo producto a la tienda. Datos: Nombre: [NOMBRE], 
+   Enlace: [LINK], Imagen: [LINK]. Dame el código HTML exacto para agregar a 
+   `src/pages/tienda.astro` y las instrucciones paso a paso."
+
+3. Para actualizar planta en base de datos:
+   "Hola, necesito actualizar/agregar la planta [NOMBRE] en la tabla `plants`. 
+   Datos: [PEGAR DATOS]. Genera el comando SQL (usando ON CONFLICT) y el 
+   paso a paso para ejecutarlo en Supabase."
 
 ================================================================
-7. PENDIENTES POR HACER (ROADMAP)
+7. PENDIENTES POR HACER (ROADMAP COMPLETO)
 ================================================================
-PRIORIDAD ABSOLUTA (Proxima sesion):
-- Desplegar el sitio en Vercel (gratis) y conectar el dominio hierbasyraices.com.
-- Crear sitemap.xml y robots.txt para Google Search Console.
+TAREAS PARA LA PRÓXIMA SESIÓN (PRIORIDAD ABSOLUTA):
+1. Google Search Console (GSC): Configurar para avisar a Google que la web es 
+   nuestra, registrar la fecha de creación y consolidar autoría contra plagio.
+2. Aviso de Copyright en el Footer: Agregar la línea "© 2026 Hierbas y Raíces. 
+   Todos los derechos reservados. Contenido con fines históricos y culturales."
+3. Sitemap.xml y robots.txt: Crear para que Google indexe (lea) el contenido 
+   rápido y consolide nuestra autoría.
+4. Crear tabla "failed_searches" en Supabase y conectarla al buscador.
 
 PRIORIDAD ALTA:
-- Configurar Amazon OneLink para redirigir compradores a su Amazon local.
-- Formulario de newsletter (Brevo/Mailchimp).
+5. Configurar Amazon OneLink para redirigir compradores a su Amazon local.
+6. Formulario de newsletter (Brevo/Mailchimp) integrado en el footer.
+7. Diseño visual e imágenes: Definir flujo para obtener, optimizar y 
+   servir imágenes de plantas (dominio público o históricas).
 
 PRIORIDAD MEDIA/BAJA:
-- Google AdSense, Ko-fi, PDFs descargables.
+8. Google AdSense, Ko-fi, PDFs descargables.
+9. Google Analytics 4 para medir tráfico real.
 
 ================================================================
 8. DECISIONES TECNICAS CLAVE (A RESPETAR SIEMPRE)
@@ -148,6 +191,10 @@ PRIORIDAD MEDIA/BAJA:
    - Botones verdes: bg-[#4a7c23] y bg-[#689f38]
    - Boton naranja (tienda): bg-[#ff9900]
    - Bordes verdes: border-[#c8e6c9]
+10. El archivo .env NUNCA se sube a GitHub. Las claves viven en local 
+    y en "Environment Variables" de Vercel.
+11. En Vercel, las variables que empiezan con "PUBLIC_" deben configurarse 
+    como tipo "Config" (no "Secret") para evitar errores de validacion.
 
 ================================================================
 9. ARCHIVOS CLAVE DEL PROYECTO
@@ -173,11 +220,11 @@ Por eso es CRITICO mantener la misma estructura de clases en todas.
 - Paginas creadas: 5 (index, planta/[id], blog/index, blog/[slug], tienda)
 - Productos en tienda: 6 (con enlaces de afiliado activos)
 - Version de Astro: 7.2.9
-- Entorno: Local (localhost:4321)
-- Hosting en produccion: Pendiente de despliegue en Vercel
+- Entorno: Local (localhost:4321) Y Produccion (Vercel + Dominio Propio)
+- Hosting en produccion: ✅ Vercel (https://hierbasyraices.com)
 
 ================================================================
-11. REGLA DE ORO DE LA ASISTENCIA TECNICA
+11. REGLA DE ORO DE LA ASISTENCIA TECNICA Y FLUJO DE TRABAJO
 ================================================================
 El usuario NO es programador. Por lo tanto, TODA instruccion tecnica 
 proporcionada por el asistente debe cumplir con:
@@ -188,52 +235,52 @@ proporcionada por el asistente debe cumplir con:
 5. Nunca asumir conocimiento previo de programacion o bases de datos.
 6. ESPECIFICAR SIEMPRE si se debe crear una CARPETA o un ARCHIVO DE TEXTO, 
    y dar la ruta exacta (ej: src/pages/tienda.astro).
-7. IR UN SOLO PASO A LA VEZ. No dar múltiples tareas juntas.
-8. DOCUMENTAR TODO en el ESTADO_PROYECTO.md al final de cada sesion.
+7. IR UN SOLO PASO A LA VEZ. El asistente DEBE esperar la confirmacion 
+   del usuario antes de avanzar al siguiente paso.
+8. DOCUMENTAR TODO en el ESTADO_PROYECTO.md SOLO AL FINAL DEL DIA DE TRABAJO, 
+   una vez verificadas las correcciones y el estado real de las tareas.
 
 ================================================================
 12. FLUJO DE TRABAJO - ACTUALIZACION DE ESTE DOCUMENTO
 ================================================================
 DESPUES DE CADA SESION DE TRABAJO:
 1. El asistente genera el "Estado del Proyecto" actualizado.
-2. El usuario abre ESTADO_PROYECTO.md con Bloc de notas.
+2. El usuario abre ESTADO_PROYECTO.md con VS Code o Bloc de notas.
 3. El usuario reemplaza TODO el contenido con la nueva version.
 4. El usuario guarda el archivo (Ctrl + S).
-5. (Opcional) El usuario hace commit y push a GitHub para respaldo.
-
-INSTRUCCIONES DE COPIADO:
-- Cuando el asistente proporcione codigo para un archivo, indicara 
-  EXPLICITAMENTE: "Copia y pega TODO este codigo en [ruta del archivo]"
-- El usuario debe reemplazar COMPLETAMENTE el contenido del archivo
-- Si es un archivo nuevo, el usuario debe crearlo en la ruta indicada
+5. El usuario hace commit y push a GitHub para respaldo.
 
 ================================================================
 13. ESTRATEGIA DE CRECIMIENTO AUTOMATICO Y MONETIZACION
 ================================================================
-OBJETIVO: Web que trabaja sola con tráfico orgánico y monetización pasiva.
+OBJETIVO: Web que trabaja sola con trafico organico y monetizacion pasiva (Evergreen).
 
 ESTRATEGIAS DE MONETIZACION (ACTIVAS):
-1. Tienda de Afiliados Amazon (COMPLETADA - 29/sep/2026):
+1. Tienda de Afiliados Amazon (COMPLETADA):
    - Cuenta de Amazon Associates aprobada (ID: hierbasyraice-20).
-   - Método de pago configurado (Global66).
-   - Pagina /tienda.astro con 6 productos reales, imágenes y enlaces de rastreo.
+   - Metodo de pago configurado (Global66).
+   - Pagina /tienda.astro con 6 productos reales, imagenes y enlaces de rastreo.
    - SiteStripe dominado para agregar futuros productos.
 2. Proximamente: Amazon OneLink, Ko-fi, Google AdSense, PDFs descargables.
 
 ================================================================
-14. NOTAS DE LA SESION DE HOY (29/sep/2026)
+14. NOTAS DE LA SESION DE HOY (03/10/2026)
 ================================================================
-- Se corrigio la pagina de tienda para mantener la misma estetica que 
-  el resto del sitio (importando '../styles/global.css').
-- Se descubrio y documentó que NO hay un layout compartido; cada pagina 
-  .astro tiene su propio HTML completo.
-- El usuario completó exitosamente el registro en Amazon Associates, 
-  configuración fiscal (Chile/No-EE.UU.) y método de pago (Global66).
-- Se dominó el uso de SiteStripe para generar enlaces de afiliado.
-- Se cargaron 6 productos reales en la tienda con sus respectivas imágenes 
-  y enlaces de rastreo (tag=hierbasyraice-20).
-- El proyecto está 100% listo en local para su despliegue en Vercel.
+- OBJETIVO DE LA SESION: Subir la página y conectar con el dominio propio.
+- Se configuraron exitosamente los registros DNS en Namecheap (Advanced DNS):
+  * Eliminados registros de estacionamiento (parkingpage) y redirección.
+  * A Record: Host `@` -> Value `216.198.79.1`
+  * CNAME Record: Host `www` -> Value `5db2e1c7fbc2e891.vercel-dns-017.com.`
+- Se verificó en Vercel: Estado cambiado a "Valid Configuration" (Check azul).
+- PRUEBA FINAL: Se confirmó que https://hierbasyraices.com carga correctamente 
+  la página principal, el blog y la tienda.
+- OBSERVACION: Se detectó un ligero retraso ("cold start") en la primera 
+  búsqueda del buscador tras inactividad, comportamiento normal del plan 
+  gratuito de Vercel. Las búsquedas subsiguientes funcionan perfectamente.
+- Se definieron plantillas de prompt estandarizadas para solicitar al 
+  asistente nuevos artículos, productos o actualizaciones de plantas, 
+  garantizando cero iteraciones innecesarias.
 
 ================================================================
-FIN DEL DOCUMENTO MAESTRO - VERSION 2.6
+FIN DEL DOCUMENTO MAESTRO - VERSION 3.0
 ================================================================

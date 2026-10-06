@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hierbasyraices.com/sitemap-index.xml

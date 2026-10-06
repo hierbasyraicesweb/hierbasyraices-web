@@ -45,6 +45,16 @@ const canonicalURL = `https://hierbasyraices.com/blog/${post.slug}`;
   <title>{seoTitle}</title>
   <meta name="description" content={seoDescription} />
   <link rel="canonical" href={canonicalURL} />
+  
+  <!-- Estilos para que el texto del blog se vea bonito (Movido al head para estructura HTML válida) -->
+  <style is:global>
+    .prose p { margin-bottom: 1.25rem; line-height: 1.7; }
+    .prose h2 { color: #33691e; font-size: 1.75rem; font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #dcedc8; padding-bottom: 0.5rem; }
+    .prose h3 { color: #558b2f; font-size: 1.4rem; font-weight: bold; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+    .prose ul, .prose ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
+    .prose li { margin-bottom: 0.5rem; }
+    .prose strong { color: #2d5016; }
+  </style>
 </head>
 <body class="bg-[#f5f5dc]">
 
@@ -82,23 +92,31 @@ const canonicalURL = `https://hierbasyraices.com/blog/${post.slug}`;
     <!-- AQUÍ ESTÁ LA CLAVE: set:html hace que el texto con formato se lea perfectamente -->
     <div class="prose prose-lg max-w-none text-gray-800 leading-relaxed" set:html={post.content} />
 
-    <footer class="mt-12 pt-6 border-t border-gray-200">
+    <div class="mt-12 pt-6 border-t border-gray-200">
       <p class="text-sm text-gray-500 italic mb-4">
         Nota: La información contenida en este artículo tiene fines históricos, culturales y educativos. No sustituye el consejo médico profesional.
       </p>
       <a href="/blog" class="inline-block bg-[#558b2f] text-white px-4 py-2 rounded-lg hover:bg-[#33691e] transition-colors">← Explorar más artículos</a>
-    </footer>
+    </div>
   </article>
+
+  <!-- FOOTER GLOBAL CON COPYRIGHT Y DISCLAIMER LEGAL -->
+  <footer class="bg-[#e8f0e3] border-t-2 border-[#c8e6c9] py-8 px-4 mt-12">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-[#2d5016] font-semibold mb-3">© 2026 Hierbas y Raíces. Todos los derechos reservados.</p>
+      <p class="text-sm text-[#2d5016] mb-4 leading-relaxed">
+        Esta información tiene fines históricos y culturales, y no constituye una recomendación de uso, dosis ni tratamiento. 
+        Consulte a un profesional de la salud antes de usar cualquier planta con fines terapéuticos.
+      </p>
+      <div class="flex justify-center space-x-4 text-sm text-[#2d5016]">
+        <a href="/" class="hover:underline hover:text-[#4a7c23]">Inicio</a>
+        <span>|</span>
+        <a href="/blog" class="hover:underline hover:text-[#4a7c23]">Blog</a>
+        <span>|</span>
+        <a href="/tienda" class="hover:underline hover:text-[#4a7c23]">Tienda</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
-
-<!-- Estilos para que el texto del blog se vea bonito -->
-<style is:global>
-  .prose p { margin-bottom: 1.25rem; line-height: 1.7; }
-  .prose h2 { color: #33691e; font-size: 1.75rem; font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #dcedc8; padding-bottom: 0.5rem; }
-  .prose h3 { color: #558b2f; font-size: 1.4rem; font-weight: bold; margin-top: 1.5rem; margin-bottom: 0.75rem; }
-  .prose ul, .prose ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
-  .prose li { margin-bottom: 0.5rem; }
-  .prose strong { color: #2d5016; }
-</style>
