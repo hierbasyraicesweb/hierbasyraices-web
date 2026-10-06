@@ -322,6 +322,7 @@ individuales de plantas).
 - Tabla failed_searches: ✅ Creada (pendiente conectar)
 
 ================================================================
+================================================================
 11. REGLA DE ORO DE LA ASISTENCIA TÉCNICA Y FLUJO DE TRABAJO
 ================================================================
 El usuario NO es programador. Por lo tanto, TODA instrucción técnica 
@@ -345,7 +346,11 @@ proporcionada por el asistente debe cumplir con:
    anteriores. Debe registrar: errores, aciertos, descubrimientos, 
    lecciones aprendidas, dónde va cada cosa, cómo se hizo, 
    absolutamente todo.
-
+10. ⚠️ NUEVA (07/10/2026): El asistente SIEMPRE debe entregar el 
+    Estado del Proyecto en formato de texto plano (dentro de un 
+    bloque de código), listo para que el usuario lo copie y pegue 
+    directamente en el archivo ESTADO_PROYECTO.md de VS Code, 
+    reemplazando todo el contenido anterior sin errores de formato.
 ================================================================
 12. FLUJO DE TRABAJO - ACTUALIZACIÓN DE ESTE DOCUMENTO
 ================================================================
