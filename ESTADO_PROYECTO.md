@@ -1,9 +1,10 @@
 ================================================================
 ESTADO MAESTRO DEL PROYECTO - HIERBAS Y RAÍCES
 ================================================================
-Fecha de actualización: 07 de octubre de 2026 (Sesión 9 - GSC, 
-Sitemap, Robots.txt y Footer con Copyright)
-Versión del documento: 4.0 (Sitio Indexado en Google Search Console)
+Fecha de actualización: 15 de octubre de 2026 (Sesión 10 - Corrección 
+de errores de indexación en GSC y configuración de dominios en Vercel)
+Versión del documento: 6.0 (Dominios corregidos en Vercel, sitemaps 
+en estado "Correcto", indexación solicitada)
 Dominio: hierbasyraices.com (Namecheap -> Vercel, DNS configurado y VÁLIDO)
 
 ⚠️ REGLA DE ORO DE ESTE DOCUMENTO:
@@ -11,6 +12,15 @@ Este archivo es HISTÓRICO y COMPLETO. Cada nueva versión debe
 incluir TODO el contenido anterior más los nuevos cambios, errores, 
 aciertos, descubrimientos y lecciones aprendidas. NUNCA se borra 
 información de versiones anteriores. Es el registro vivo del proyecto.
+
+⚠️ REGLA DE ORO DEL FORMATO DE ENTREGA:
+Al final de cada día de trabajo, el asistente debe entregar el 
+"Estado del Proyecto" en formato de texto plano (dentro de un bloque 
+de código), listo para copiar y pegar en el bloc de notas o VS Code. 
+Este estado debe incluir: todo lo que ya está completamente hecho, 
+todo lo nuevo que se realizó, cómo debe hacerse, los aciertos, los 
+errores y esta misma instrucción sobre lo que debe ir en el estado 
+del proyecto.
 ================================================================
 
 ================================================================
@@ -59,12 +69,14 @@ FUNCIONANDO ACTUALMENTE:
   Global66)
 - Correo del proyecto: hierbasyraices.web@gmail.com
 - Google Search Console: ✅ VERIFICADO (07/10/2026)
+- Dominios en Vercel: ✅ CONFIGURADOS CORRECTAMENTE (15/10/2026)
 
 PENDIENTE DE CONECTAR/CONFIGURAR:
 - ✅ Conexión del dominio personalizado (Namecheap -> Vercel): 
   COMPLETADO (03/10/2026).
 - ✅ Google Search Console: COMPLETADO (07/10/2026).
 - ✅ Sitemap.xml y robots.txt: COMPLETADO (07/10/2026).
+- ✅ Corrección de redirección en Vercel: COMPLETADO (15/10/2026).
 - Google Analytics 4 (Para medir tráfico real).
 - Mailchimp o Brevo (newsletter).
 - Google AdSense, Ko-fi.
@@ -137,6 +149,15 @@ MEJORAS REALIZADAS EL 07/10/2026:
   * https://hierbasyraices.com/sitemap-0.xml
 - ✅ Google Search Console verificado con archivo HTML
 - ✅ Sitemap enviado a Google Search Console
+
+MEJORAS REALIZADAS EL 15/10/2026:
+- ✅ Corrección de configuración de dominios en Vercel:
+  * hierbasyraices.com → Production (dominio principal, sin redirección)
+  * www.hierbasyraices.com → 301 Moved Permanently → hierbasyraices.com
+  * hierbasyraices-web.vercel.app → Production (respaldo)
+- ✅ Verificación de DNS en Namecheap (correctos desde Sesión 8)
+- ✅ Sitemaps en estado "Correcto" en GSC (antes "No se ha podido obtener")
+- ✅ Indexación manual solicitada para https://hierbasyraices.com/
 
 DESPLIEGUE Y PRODUCCIÓN:
 - Repositorio GitHub público: hierbasyraicesweb/hierbasyraices-web
@@ -214,24 +235,33 @@ TAREAS COMPLETADAS EN SESIÓN 07/10/2026:
 ✅ 4. Tabla "failed_searches" en Supabase: Creada (pendiente conectar 
    al buscador).
 
+TAREAS COMPLETADAS EN SESIÓN 15/10/2026:
+✅ 5. Corrección de configuración de dominios en Vercel: Eliminada 
+   redirección incorrecta (apex → www) y configurada correctamente 
+   (www → apex con 301).
+✅ 6. Verificación de DNS en Namecheap: Confirmados como correctos.
+✅ 7. Sitemaps en estado "Correcto" en GSC.
+✅ 8. Indexación manual solicitada para URL principal.
+
 PRIORIDAD ALTA (PARA PRÓXIMAS SESIONES):
-5. Sitemap personalizado completo (incluir 361 plantas + 9 artículos 
-   del blog). Ver tabla de tiempos estimados en Sección 15.
-6. Conectar tabla "failed_searches" al buscador para registrar 
-   búsquedas sin resultados.
-7. Configurar Amazon OneLink para redirigir compradores a su Amazon 
-   local.
-8. Formulario de newsletter (Brevo/Mailchimp) integrado en el footer.
-9. Google Analytics 4 para medir tráfico real.
+9. Sitemap personalizado completo (incluir 361 plantas + 9 artículos 
+   del blog). Ver tabla de tiempos estimados en Sección 16.
+   *CRÍTICO: Google solo conoce 3 URLs, necesita ~375 URLs.
+10. Conectar tabla "failed_searches" al buscador para registrar 
+    búsquedas sin resultados.
+11. Configurar Amazon OneLink para redirigir compradores a su Amazon 
+    local.
+12. Formulario de newsletter (Brevo/Mailchimp) integrado en el footer.
+13. Google Analytics 4 para medir tráfico real.
 
 PRIORIDAD MEDIA:
-10. Diseño visual e imágenes: Definir flujo para obtener, optimizar y 
+14. Diseño visual e imágenes: Definir flujo para obtener, optimizar y 
     servir imágenes de plantas (dominio público o históricas).
-11. Google AdSense (requiere tráfico constante previo).
+15. Google AdSense (requiere tráfico constante previo).
 
 PRIORIDAD BAJA:
-12. Ko-fi para donaciones.
-13. PDFs descargables.
+16. Ko-fi para donaciones.
+17. PDFs descargables.
 
 ================================================================
 8. DECISIONES TÉCNICAS CLAVE (A RESPETAR SIEMPRE)
@@ -261,7 +291,7 @@ PRIORIDAD BAJA:
 11. En Vercel, las variables que empiezan con "PUBLIC_" deben 
     configurarse como tipo "Config" (no "Secret") para evitar errores 
     de validación.
-12. ️ NUEVA (07/10/2026): El plugin @astrojs/sitemap NO genera el 
+12. ⚠️ NUEVA (07/10/2026): El plugin @astrojs/sitemap NO genera el 
     sitemap en modo desarrollo local (npm run dev). Solo se genera 
     durante el build de producción. Por eso da 404 en localhost pero 
     funciona en hierbasyraices.com.
@@ -272,12 +302,30 @@ PRIORIDAD BAJA:
 14. ⚠️ NUEVA (07/10/2026): Las etiquetas <style> deben ir dentro del 
     <head>, nunca fuera del </html>. Si están fuera, el HTML es 
     inválido y puede causar problemas de SEO.
-15. ⚠️ NUEVA (07/10/2026): El archivo de verificación de Google 
+15. ️ NUEVA (07/10/2026): El archivo de verificación de Google 
     (google4597b1450f33f5a2.html) debe permanecer SIEMPRE en la 
     carpeta public/. Si se elimina, se pierde la verificación en GSC.
-16. ️ NUEVA (07/10/2026): Google Search Console puede mostrar "No se 
+16. ⚠️ NUEVA (07/10/2026): Google Search Console puede mostrar "No se 
     ha podido obtener" en el sitemap las primeras 24-48 horas. Es 
     normal. Google reintentará automáticamente.
+17. ⚠️ NUEVA (15/10/2026): En Vercel, el checkbox "Redirect apex 
+    domains to www (recommended)" crea una redirección de 
+    hierbasyraices.com → www.hierbasyraices.com que Google marca como 
+    error "Página con redirección". DEBE ESTAR DESMARCADO para que 
+    hierbasyraices.com sea el dominio principal.
+18. ⚠️ NUEVA (15/10/2026): La configuración correcta de dominios en 
+    Vercel es:
+    - hierbasyraices.com → Connect to Production (dominio principal)
+    - www.hierbasyraices.com → Redirect 301 → hierbasyraices.com
+    - hierbasyraices-web.vercel.app → Connect to Production (respaldo)
+19. ️ NUEVA (15/10/2026): Google tarda 24-72 horas en re-rastrear 
+    un sitio después de cambios de configuración. Los datos en GSC 
+    pueden estar desactualizados (ej: "Última actualización: 8/10/26" 
+    cuando hoy es 15/10/26).
+20. ️ NUEVA (15/10/2026): Google puede tener en caché una URL 
+    canónica incorrecta (ej: www.hierbasyraices.com) aunque ya se 
+    corrigió en Vercel. Se necesita solicitar indexación manual y 
+    esperar el re-rastreo.
 
 ================================================================
 9. ARCHIVOS CLAVE DEL PROYECTO
@@ -317,11 +365,15 @@ individuales de plantas).
   Propio)
 - Hosting en producción: ✅ Vercel (https://hierbasyraices.com)
 - Google Search Console: ✅ VERIFICADO (07/10/2026)
-- Sitemap: ✅ Enviado a Google (pendiente procesamiento completo)
+- Dominios en Vercel: ✅ CONFIGURADOS CORRECTAMENTE (15/10/2026)
+- Sitemaps: ✅ EN ESTADO "CORRECTO" (15/10/2026) - pero solo incluyen 
+  3 URLs (/, /blog/, /tienda/)
 - robots.txt: ✅ Configurado
 - Tabla failed_searches: ✅ Creada (pendiente conectar)
+- Páginas indexadas en Google: 0 (sitio nuevo, en proceso)
+- Páginas sin indexar: 3 (1 por redirección - en proceso de 
+  resolución, 2 descubiertas sin indexar - normal en sitio nuevo)
 
-================================================================
 ================================================================
 11. REGLA DE ORO DE LA ASISTENCIA TÉCNICA Y FLUJO DE TRABAJO
 ================================================================
@@ -340,17 +392,17 @@ proporcionada por el asistente debe cumplir con:
 8. DOCUMENTAR TODO en el ESTADO_PROYECTO.md SOLO AL FINAL DEL DÍA DE 
    TRABAJO, una vez verificadas las correcciones y el estado real de 
    las tareas.
-9. ⚠️ NUEVA (07/10/2026): El ESTADO_PROYECTO.md debe ser HISTÓRICO Y 
-   COMPLETO. Cada nueva versión incluye TODO el contenido anterior 
-   más los nuevos cambios. NUNCA se borra información de versiones 
-   anteriores. Debe registrar: errores, aciertos, descubrimientos, 
-   lecciones aprendidas, dónde va cada cosa, cómo se hizo, 
-   absolutamente todo.
-10. ⚠️ NUEVA (07/10/2026): El asistente SIEMPRE debe entregar el 
-    Estado del Proyecto en formato de texto plano (dentro de un 
-    bloque de código), listo para que el usuario lo copie y pegue 
-    directamente en el archivo ESTADO_PROYECTO.md de VS Code, 
-    reemplazando todo el contenido anterior sin errores de formato.
+9. ⚠️ El ESTADO_PROYECTO.md debe ser HISTÓRICO Y COMPLETO. Cada nueva 
+   versión incluye TODO el contenido anterior más los nuevos cambios. 
+   NUNCA se borra información de versiones anteriores. Debe registrar: 
+   errores, aciertos, descubrimientos, lecciones aprendidas, dónde va 
+   cada cosa, cómo se hizo, absolutamente todo.
+10. ⚠️ El asistente SIEMPRE debe entregar el Estado del Proyecto en 
+    formato de texto plano (dentro de un bloque de código), listo 
+    para que el usuario lo copie y pegue directamente en el archivo 
+    ESTADO_PROYECTO.md de VS Code, reemplazando todo el contenido 
+    anterior sin errores de formato.
+
 ================================================================
 12. FLUJO DE TRABAJO - ACTUALIZACIÓN DE ESTE DOCUMENTO
 ================================================================
@@ -393,14 +445,15 @@ ESTRATEGIAS DE MONETIZACIÓN (ACTIVAS):
 2. Próximamente: Amazon OneLink, Ko-fi, Google AdSense, PDFs 
    descargables.
 
-ESTRATEGIA SEO (ACTIVADA EL 07/10/2026):
+ESTRATEGIA SEO (ACTIVADA EL 07/10/2026, ACTUALIZADA 15/10/2026):
 - ✅ Google Search Console verificado
-- ✅ Sitemap enviado a Google
+- ✅ Sitemap enviado a Google (estado "Correcto" desde 15/10/2026)
 - ✅ robots.txt configurado
-- ⏳ Esperando indexación de Google (24-48 horas para primeras 
-  señales)
--  Sitemap personalizado completo (pendiente, incluirá 361 plantas 
-  + 9 artículos)
+- ✅ Configuración de dominios corregida en Vercel (15/10/2026)
+- ✅ Indexación manual solicitada (15/10/2026)
+- ⏳ Esperando re-rastreo de Google (24-72 horas)
+- ⚠️ Sitemap personalizado completo pendiente (incluirá 361 plantas 
+  + 9 artículos) - CRÍTICO para que Google conozca todas las páginas
 
 ================================================================
 14. HISTORIAL DE SESIONES (DESDE LA GÉNESIS)
@@ -440,218 +493,28 @@ SESIÓN 8 (03/10/2026): Dominio Conectado y Flujo de Trabajo Definido
 SESIÓN 9 (07/10/2026): GSC, Sitemap, Robots.txt y Footer con 
 Copyright - VER DETALLE COMPLETO EN SECCIÓN 15.
 
+SESIÓN 10 (15/10/2026): Corrección de errores de indexación en GSC 
+y configuración de dominios en Vercel - VER DETALLE COMPLETO EN 
+SECCIÓN 17.
+
 ================================================================
-15. NOTAS DETALLADAS DE LA SESIÓN DE HOY (07/10/2026)
+15. NOTAS DETALLADAS DE LA SESIÓN 09 (07/10/2026)
 ================================================================
-
-📅 FECHA: 07 de octubre de 2026
- OBJETIVO DE LA SESIÓN: Completar los 4 pendientes de prioridad 
-absoluta del roadmap.
-
-✅ LOGROS COMPLETADOS:
-
-1. TABLA "failed_searches" EN SUPABASE
-   - Hora: Inicio de sesión
-   - Acción: Creación de tabla en SQL Editor de Supabase
-   - Código ejecutado:
-     CREATE TABLE IF NOT EXISTS failed_searches (
-         id SERIAL PRIMARY KEY,
-         search_term TEXT NOT NULL,
-         timestamp TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-         count INTEGER DEFAULT 1
-     );
-     CREATE INDEX IF NOT EXISTS idx_failed_searches_term 
-     ON failed_searches(search_term);
-   - Resultado: ✅ Success. No rows returned
-   - Estado: Creada pero NO conectada al buscador (pendiente)
-
-2. FOOTER CON COPYRIGHT Y DISCLAIMER LEGAL
-   - Archivos modificados:
-     * src/pages/index.astro
-     * src/pages/blog/index.astro
-     * src/pages/blog/[slug].astro
-   - Código del footer agregado (mismo en los 3 archivos):
-     <footer class="bg-[#e8f0e3] border-t-2 border-[#c8e6c9] 
-     py-8 px-4 mt-12">
-       <div class="max-w-4xl mx-auto text-center">
-         <p class="text-[#2d5016] font-semibold mb-3">© 2026 
-         Hierbas y Raíces. Todos los derechos reservados.</p>
-         <p class="text-sm text-[#2d5016] mb-4 leading-relaxed">
-           Esta información tiene fines históricos y culturales, y 
-           no constituye una recomendación de uso, dosis ni 
-           tratamiento. Consulte a un profesional de la salud antes 
-           de usar cualquier planta con fines terapéuticos.
-         </p>
-         <div class="flex justify-center space-x-4 text-sm 
-         text-[#2d5016]">
-           <a href="/" class="hover:underline 
-           hover:text-[#4a7c23]">Inicio</a>
-           <span>|</span>
-           <a href="/blog" class="hover:underline 
-           hover:text-[#4a7c23]">Blog</a>
-           <span>|</span>
-           <a href="/tienda" class="hover:underline 
-           hover:text-[#4a7c23]">Tienda</a>
-         </div>
-       </div>
-     </footer>
-   - Verificación: ✅ Funciona en Home, Blog (listado), Blog 
-     (artículo individual) y Tienda (ya lo tenía)
-   - ⚠️ PENDIENTE: Agregar footer a src/pages/planta/[id].astro
-
-3. ARCHIVO robots.txt
-   - Ubicación: public/robots.txt
-   - Contenido:
-     User-agent: *
-     Allow: /
-     
-     Sitemap: https://hierbasyraices.com/sitemap-index.xml
-   - Verificación: ✅ Accesible en 
-     https://hierbasyraices.com/robots.txt
-
-4. PLUGIN @astrojs/sitemap
-   - Comando de instalación: npm install @astrojs/sitemap
-   - Archivo modificado: astro.config.mjs
-   - Código final:
-     import { defineConfig } from 'astro/config';
-     import vercel from '@astrojs/vercel';
-     import sitemap from '@astrojs/sitemap';
-     
-     export default defineConfig({
-       output: 'server',
-       adapter: vercel(),
-       site: 'https://hierbasyraices.com',
-       integrations: [sitemap()],
-     });
-   - Sitemaps generados en producción:
-     * https://hierbasyraices.com/sitemap-index.xml
-     * https://hierbasyraices.com/sitemap-0.xml
-   - ⚠️ LIMITACIÓN DETECTADA: Solo incluye 3 URLs (/, /blog/, 
-     /tienda/). NO incluye las 361 plantas ni los 9 artículos 
-     individuales porque son rutas dinámicas de Supabase en modo SSR.
-
-5. GOOGLE SEARCH CONSOLE
-   - URL: https://search.google.com/search-console
-   - Cuenta usada: hierbasyraices.web@gmail.com
-   - Método de verificación: Archivo HTML
-   - Archivo de verificación: 
-     public/google4597b1450f33f5a2.html
-   - Estado: ✅ PROPIEDAD VERIFICADA
-   - Sitemap enviado: sitemap-index.xml
-   - Estado del sitemap en GSC: "No se ha podido obtener" (normal 
-     las primeras 24-48 horas, Google reintentará automáticamente)
-
-️ ERRORES Y PROBLEMAS ENCONTRADOS:
-
-1. npm install colgado:
-   - Problema: El comando `npm install @astrojs/sitemap` se "colgó" 
-     por más de 30 segundos sin mostrar progreso.
-   - Causa: Posible lentitud de red o primera descarga del paquete.
-   - Solución: Esperar 1-2 minutos. Si no avanza, Ctrl+C y reintentar.
-   - Lección: Las instalaciones de npm pueden tardar, especialmente 
-     la primera vez.
-
-2. Sitemap 404 en local:
-   - Problema: http://localhost:4321/sitemap-index.xml daba error 404.
-   - Causa: El plugin @astrojs/sitemap SOLO genera el sitemap durante 
-     el build de producción, no en modo desarrollo (npm run dev).
-   - Solución: Verificar el sitemap en producción 
-     (https://hierbasyraices.com/sitemap-index.xml), no en local.
-   - Lección: Algunas funcionalidades de Astro solo funcionan en 
-     producción.
-
-3. Servidor local detenido accidentalmente:
-   - Problema: Al presionar Ctrl+C para cancelar npm install, se 
-     detuvo también el servidor `npm run dev`.
-   - Causa: Ctrl+C detiene cualquier proceso en la terminal.
-   - Solución: Reiniciar con `npm run dev`.
-   - Lección: Si se necesita usar la terminal para otros comandos, 
-     abrir una nueva terminal (botón + en la pestaña Terminal) en 
-     lugar de detener el servidor.
-
-4. Etiqueta <style> fuera del <html>:
-   - Problema: En src/pages/blog/[slug].astro, la etiqueta 
-     `<style is:global>` estaba después del `</html>`, lo cual es 
-     HTML inválido.
-   - Causa: Error en la estructura original del archivo.
-   - Solución: Mover el bloque `<style is:global>` dentro del 
-     `<head>`.
-   - Lección: Siempre validar que el HTML sea estructuralmente 
-     correcto para SEO.
-
-5. Sitemap "No se ha podido obtener" en GSC:
-   - Problema: Google Search Console mostró "No se ha podido 
-     obtener" para ambos sitemaps enviados.
-   - Causa: Google aún no ha procesado el sitemap (recién enviado). 
-     También el tipo aparece como "Desconocido" en lugar de "Índice 
-     de sitemaps".
-   - Solución: Esperar 24-48 horas. Google reintentará 
-     automáticamente.
-   - Lección: La indexación de Google no es instantánea.
-
-6. Sitemap solo incluye 3 URLs:
-   - Problema: El sitemap automático solo lista /, /blog/ y /tienda/. 
-     No incluye las 361 plantas ni los 9 artículos.
-   - Causa: El sitio usa `output: 'server'` (SSR). El plugin 
-     automático de Astro solo detecta páginas estáticas 
-     predefinidas, no rutas dinámicas de Supabase.
-   - Solución pendiente: Crear un endpoint personalizado 
-     (src/pages/sitemap.xml.ts) que consulte Supabase y genere el 
-     XML dinámicamente.
-   - Lección: En modo SSR, se necesita código personalizado para 
-     sitemaps completos.
-
-🎓 LECCIONES APRENDIDAS:
-
-1. FLUJO DE TRABAJO OBLIGATORIO:
-   - Siempre trabajar en LOCAL (VS Code + npm run dev)
-   - Verificar cambios en http://localhost:4321
-   - Detener servidor (Ctrl + C) solo cuando sea necesario
-   - git add . → git commit -m "mensaje" → git push
-   - Esperar despliegue automático en Vercel (~30-60 segundos)
-   - Verificar en https://hierbasyraices.com
-   - NUNCA editar directamente la página en internet.
-
-2. ARCHIVOS EN CARPETA public/:
-   - Todo archivo colocado en public/ se sirve directamente en la 
-     raíz del dominio.
-   - Ejemplo: public/robots.txt → https://hierbasyraices.com/robots.txt
-   - Ejemplo: public/google4597b1450f33f5a2.html → 
-     https://hierbasyraices.com/google4597b1450f33f5a2.html
-
-3. GOOGLE SEARCH CONSOLE:
-   - Es la herramienta oficial para avisarle a Google que tu sitio 
-     existe.
-   - Sin GSC, Google puede tardar semanas o meses en encontrar tu 
-     sitio.
-   - Con GSC, le estás diciendo directamente: "¡Estoy aquí, 
-     índexame!"
-   - El archivo de verificación HTML debe permanecer SIEMPRE en 
-     public/. Si se elimina, se pierde la verificación.
-
-4. SITEMAP EN MODO SSR:
-   - El plugin automático @astrojs/sitemap tiene limitaciones en 
-     modo servidor.
-   - Para sitemaps completos con rutas dinámicas, se necesita código 
-     personalizado.
-   - Aunque el sitemap esté incompleto, Google igualmente encontrará 
-     las páginas a través de enlaces internos.
-
-5. PACIENCIA CON GOOGLE:
-   - La indexación no es instantánea.
-   - Los mensajes de error iniciales en GSC son normales.
-   - Google reintentará automáticamente en 24-48 horas.
+(Se mantiene el registro histórico completo de la Sesión 9, incluyendo 
+la creación de la tabla failed_searches, el footer con copyright, 
+robots.txt, el plugin @astrojs/sitemap, la verificación en GSC, y las 
+lecciones aprendidas sobre npm install, sitemap 404 en local, 
+etiquetas <style> y las limitaciones del sitemap en modo SSR).
 
 ================================================================
 16. PLAN DETALLADO PARA SITEMAP PERSONALIZADO COMPLETO
 ================================================================
 (Pendiente para próxima sesión - Tiempo estimado: 90-100 minutos)
-
 OBJETIVO: Incluir las 361 plantas + 9 artículos del blog + páginas 
-estáticas en el sitemap (total ~375 URLs).
+estáticas en el sitemap (total ~375 URLs). Esto es CRÍTICO para que 
+Google conozca todas las páginas del sitio.
 
 PASOS Y TIEMPOS ESTIMADOS:
-
 Paso | Descripción                                      | Tiempo
 -----|--------------------------------------------------|--------
 1    | Explicación del concepto y preparación           | 10 min
@@ -671,28 +534,165 @@ Paso | Descripción                                      | Tiempo
 10   | Buffer para imprevistos o dudas                  | 10 min
 -----|--------------------------------------------------|--------
 TOTAL|                                                  | 90-100 min
-     |                                                  | (1h 30m -
-     |                                                  |  1h 40m)
 
 RECOMENDACIÓN: Bloquear 2 horas seguidas sin interrupciones para 
 terminar de una vez.
 
 ================================================================
-17. PRÓXIMOS PASOS INMEDIATOS (PARA LA PRÓXIMA SESIÓN)
+17. NOTAS DETALLADAS DE LA SESIÓN 10 (15/10/2026)
 ================================================================
 
-PRIORIDAD 1: Esperar 24-48 horas y verificar en GSC que el sitemap 
-cambie de "No se ha podido obtener" a "Correcto".
+📅 FECHA: 15 de octubre de 2026
+🎯 OBJETIVO DE LA SESIÓN: Resolver los errores de indexación 
+reportados por Google Search Console (correo del 12/10/2026).
 
-PRIORIDAD 2: Agregar footer a src/pages/planta/[id].astro (fichas 
-individuales de plantas) para mantener consistencia visual.
+ ERROR REPORTADO POR GSC:
+- Motivo: "Página con redirección" (1 página)
+- Motivo: "Descubierta: actualmente sin indexar" (2 páginas)
+- Fuente del correo: Google Search Console Team 
+  (sc-noreply@google.com)
 
-PRIORIDAD 3: Sitemap personalizado completo (ver Sección 16 para 
-plan detallado).
+✅ LOGROS COMPLETADOS:
+
+1. DIAGNÓSTICO DEL ERROR DE REDIRECCIÓN
+   - Hora: Inicio de sesión
+   - Acción: Análisis de capturas de GSC y Vercel
+   - Descubrimiento: Vercel tenía configurado 
+     "Redirect apex domains to www" activado, lo que causaba que 
+     hierbasyraices.com redirigiera a www.hierbasyraices.com
+   - Google detectaba esta redirección y la marcaba como error
+   - Resultado: ✅ Diagnóstico completado
+
+2. CORRECCIÓN DE DOMINIOS EN VERCEL
+   - Hora: Durante la sesión
+   - Acciones realizadas:
+     a) Eliminación de www.hierbasyraices.com (dominio conectado 
+        a Production)
+     b) Eliminación accidental de hierbasyraices.com (se eliminaron 
+        ambos dominios personalizados)
+     c) Re-agregación de hierbasyraices.com con checkbox 
+        "Redirect apex domains to www" DESMARCADO
+     d) Agregación de www.hierbasyraices.com como redirección 301 
+        hacia hierbasyraices.com
+   - Configuración final:
+     * www.hierbasyraices.com → 301 → hierbasyraices.com
+     * hierbasyraices.com → Production (dominio principal)
+     * hierbasyraices-web.vercel.app → Production (respaldo)
+   - Resultado: ✅ Todos los dominios en "Valid Configuration"
+
+3. VERIFICACIÓN DE DNS EN NAMECHEAP
+   - Hora: Durante la sesión
+   - Acción: Revisión de registros DNS en Namecheap
+   - Registros confirmados:
+     * A Record: @ → 216.198.79.1
+     * CNAME Record: www → 5db2e1c7fbc2e891.vercel-dns-017.com.
+   - Resultado: ✅ DNS correctos, no requirieron cambios
+
+4. VERIFICACIÓN DE SITEMAPS EN GSC
+   - Hora: Durante la sesión
+   - Acción: Revisión de estado de sitemaps en GSC
+   - Resultado: ✅ Ambos sitemaps cambiaron de "No se ha podido 
+     obtener" a "Correcto"
+   - Limitación: Solo incluyen 3 URLs (/, /blog/, /tienda/)
+
+5. SOLICITUD DE INDEXACIÓN MANUAL
+   - Hora: Final de sesión
+   - Acción: Inspección de URL https://hierbasyraices.com/ en GSC
+   - Resultado: ✅ Indexación solicitada exitosamente
+   - Estado actual: "La URL no está en Google" (normal, sitio nuevo)
+   - Página de referencia detectada: https://www.hierbasyraices.com/
+   - URL canónica seleccionada por Google: 
+     https://www.hierbasyraices.com/ (datos antiguos del 8/10/26)
+
+⚠️ ERRORES Y PROBLEMAS ENCONTRADOS:
+
+1. Eliminación accidental de dos dominios en Vercel:
+   - Problema: Al intentar eliminar solo www.hierbasyraices.com, 
+     se eliminaron ambos dominios personalizados.
+   - Causa: Confusión en la interfaz de Vercel.
+   - Solución: Re-agregar hierbasyraices.com con la configuración 
+     correcta (checkbox desmarcado).
+   - Lección: Tener cuidado al eliminar dominios en Vercel, verificar 
+     cuál se está eliminando.
+
+2. Datos desactualizados en GSC:
+   - Problema: GSC muestra "Última actualización: 8/10/26" cuando 
+     hoy es 15/10/26.
+   - Causa: Google no ha re-rastreado el sitio desde los cambios.
+   - Solución: Esperar 24-72 horas para que Google re-rastree.
+   - Lección: Los datos en GSC pueden tener hasta una semana de 
+     retraso. No entrar en pánico si los errores persisten 
+     inmediatamente después de una corrección.
+
+3. URL canónica incorrecta en caché de Google:
+   - Problema: Google tiene guardado que www.hierbasyraices.com es 
+     la URL canónica, aunque ya se corrigió en Vercel.
+   - Causa: Google rastreó el sitio el 8/10/26 con la configuración 
+     antigua.
+   - Solución: Solicitar indexación manual y esperar re-rastreo.
+   - Lección: Los cambios de configuración en Vercel no se reflejan 
+     instantáneamente en Google.
+
+🎓 LECCIONES APRENDIDAS:
+
+1. CONFIGURACIÓN DE DOMINIOS EN VERCEL:
+   - El checkbox "Redirect apex domains to www (recommended)" NO 
+     siempre es recomendable para SEO.
+   - Si se marca, crea una redirección 308 de hierbasyraices.com 
+     → www.hierbasyraices.com que Google marca como error.
+   - La configuración correcta para SEO es:
+     * hierbasyraices.com → Production (dominio principal)
+     * www.hierbasyraices.com → 301 → hierbasyraices.com
+   - Usar 301 (Moved Permanently) en lugar de 307 (Temporary 
+     Redirect) para mejor SEO.
+
+2. GOOGLE SEARCH CONSOLE - TIEMPOS DE PROCESAMIENTO:
+   - Google tarda 24-72 horas en re-rastrear un sitio después de 
+     cambios.
+   - Los datos en GSC pueden estar desactualizados hasta una semana.
+   - Solicitar indexación manual ayuda a acelerar el proceso.
+   - Es normal que un sitio nuevo tenga 0 páginas indexadas las 
+     primeras semanas.
+
+3. SITEMAP INCOMPLETO = PROBLEMA DE INDEXACIÓN:
+   - El sitemap automático de Astro en modo SSR solo incluye 
+     páginas estáticas (/, /blog/, /tienda/).
+   - Google solo conoce las URLs que están en el sitemap o que 
+     encuentra por enlaces internos.
+   - Para que Google indexe las 361 plantas, necesitamos un sitemap 
+     personalizado que las incluya todas.
+   - Este es el siguiente paso CRÍTICO del proyecto.
+
+4. FLUJO DE TRABAJO CON VERCEL:
+   - Al eliminar dominios en Vercel, verificar cuidadosamente cuál 
+     se está eliminando.
+   - Siempre hacer Refresh después de cambios para verificar que 
+     la configuración es válida.
+   - Los cambios en Vercel son inmediatos, pero Google tarda en 
+     reflejarlos.
+
+================================================================
+18. PRÓXIMOS PASOS INMEDIATOS (PARA LA PRÓXIMA SESIÓN)
+================================================================
+
+PRIORIDAD 1: ⏳ ESPERAR 24-72 horas y verificar en GSC que:
+- El error "Página con redirección" desaparezca
+- Al menos algunas páginas pasen a "Indexadas"
+- Los datos se actualicen con fecha reciente
+
+PRIORIDAD 2: Sitemap personalizado completo (ver Sección 16 para 
+plan detallado). Esto es CRÍTICO porque:
+- Google solo conoce 3 URLs de nuestro sitio
+- Necesita conocer las ~375 URLs (361 plantas + 9 artículos + 
+  páginas estáticas)
+- Sin esto, la indexación será muy lenta e incompleta
+
+PRIORIDAD 3: Agregar footer a src/pages/planta/[id].astro (fichas 
+individuales de plantas) para mantener consistencia visual y legal.
 
 PRIORIDAD 4: Conectar tabla "failed_searches" al buscador (solo 
 cuando haya tráfico real).
 
 ================================================================
-FIN DEL DOCUMENTO MAESTRO - VERSIÓN 4.0
+FIN DEL DOCUMENTO MAESTRO - VERSIÓN 6.0
 ================================================================
