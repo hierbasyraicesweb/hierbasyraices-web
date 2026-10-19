@@ -7,13 +7,13 @@ Versión del documento: 7.0 (Sitemap personalizado con 374 URLs
 creado, enviado a GSC y procesado correctamente)
 Dominio: hierbasyraices.com (Namecheap -> Vercel, DNS configurado y VÁLIDO)
 
-⚠️ REGLA DE ORO DE ESTE DOCUMENTO:
+️ REGLA DE ORO DE ESTE DOCUMENTO:
 Este archivo es HISTÓRICO y COMPLETO. Cada nueva versión debe 
 incluir TODO el contenido anterior más los nuevos cambios, errores, 
 aciertos, descubrimientos y lecciones aprendidas. NUNCA se borra 
 información de versiones anteriores. Es el registro vivo del proyecto.
 
-️ REGLA DE ORO DEL FORMATO DE ENTREGA:
+⚠️ REGLA DE ORO DEL FORMATO DE ENTREGA:
 Al final de cada día de trabajo, el asistente debe entregar el 
 "Estado del Proyecto" en formato de texto plano (dentro de un bloque 
 de código), listo para copiar y pegar en el bloc de notas o VS Code. 
@@ -292,16 +292,60 @@ TAREAS COMPLETADAS EN SESIÓN 19/10/2026:
 ✅ 13. Sitemap enviado a GSC y procesado correctamente (374 páginas)
 
 PRIORIDAD ALTA (PARA PRÓXIMAS SESIONES):
-14. Esperar 24-48 horas y verificar en GSC que las páginas empiecen 
-    a indexarse.
-15. Agregar footer a src/pages/planta/[id].astro (fichas individuales 
-    de plantas) para mantener consistencia visual y legal.
-16. Conectar tabla "failed_searches" al buscador para registrar 
-    búsquedas sin resultados.
-17. Configurar Amazon OneLink para redirigir compradores a su Amazon 
-    local.
-18. Formulario de newsletter (Brevo/Mailchimp) integrado en el footer.
-19. Google Analytics 4 para medir tráfico real.
+
+14. AGREGAR FOOTER LEGAL A FICHAS DE PLANTAS
+    Archivo: src/pages/planta/[id].astro
+    Descripción: Copiar el footer legal (copyright + disclaimer) 
+    desde otra página (ej: index.astro) y pegarlo en 
+    planta/[id].astro para mantener consistencia visual y legal en 
+    TODAS las páginas del sitio.
+    Tiempo estimado: 15-20 minutos
+    Dificultad: Baja (copiar y pegar código existente)
+    Impacto: Alto (cumplimiento legal en todas las páginas)
+
+15. CONECTAR TABLA "failed_searches" AL BUSCADOR
+    Descripción: Modificar el componente del buscador para que, 
+    cuando no haya resultados, envíe el término de búsqueda a la 
+    tabla "failed_searches" en Supabase. Esto permitirá saber qué 
+    buscan los usuarios y no encuentran, guiando la creación de 
+    nuevo contenido.
+    Tiempo estimado: 30-45 minutos
+    Dificultad: Media (requiere modificar lógica del buscador + 
+    crear endpoint en Supabase)
+    Impacto: Alto (data-driven content strategy)
+
+16. CONFIGURAR GOOGLE ANALYTICS 4
+    Descripción: Crear cuenta en Google Analytics 4, obtener el 
+    ID de medición (G-XXXXXXXXXX), e integrar el script de 
+    seguimiento en todas las páginas del sitio (preferiblemente 
+    en un layout compartido o en cada página .astro).
+    Tiempo estimado: 20-30 minutos
+    Dificultad: Baja-Media (crear cuenta + pegar script)
+    Impacto: Alto (medición de tráfico real, no solo indexación)
+
+17. ESPERAR INDEXACIÓN EN GSC
+    Descripción: Monitorear en Google Search Console cuántas de 
+    las 374 páginas pasan de "Descubierta" a "Indexada". No 
+    requiere acción técnica, solo paciencia.
+    Tiempo estimado: 24-72 horas (tiempo de espera pasivo)
+    Dificultad: Nula
+    Impacto: Crítico (sin indexación no hay tráfico orgánico)
+
+18. CONFIGURAR AMAZAN ONELINK
+    Descripción: Configurar Amazon OneLink para redirigir 
+    compradores internacionales a su Amazon local (ej: usuarios 
+    de España van a amazon.es, usuarios de México a amazon.com.mx).
+    Tiempo estimado: 15-20 minutos
+    Dificultad: Baja
+    Impacto: Medio (mejora conversión de afiliados internacionales)
+
+19. FORMULARIO DE NEWSLETTER
+    Descripción: Integrar formulario de suscripción (Brevo o 
+    Mailchimp) en el footer para capturar emails y construir 
+    audiencia.
+    Tiempo estimado: 30-45 minutos
+    Dificultad: Media (crear cuenta + integrar formulario)
+    Impacto: Medio (construcción de audiencia directa)
 
 PRIORIDAD MEDIA:
 20. Diseño visual e imágenes: Definir flujo para obtener, optimizar y 
@@ -624,7 +668,7 @@ reportados por Google Search Console (correo del 12/10/2026).
 18. NOTAS DETALLADAS DE LA SESIÓN 11 (19/10/2026)
 ================================================================
 
-📅 FECHA: 19 de octubre de 2026
+ FECHA: 19 de octubre de 2026
 🎯 OBJETIVO DE LA SESIÓN: Crear e implementar el sitemap personalizado 
 completo para que Google conozca las 374 páginas del sitio.
 
