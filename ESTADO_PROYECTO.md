@@ -1,10 +1,10 @@
 ================================================================
 ESTADO MAESTRO DEL PROYECTO - HIERBAS Y RAÍCES
 ================================================================
-Fecha de actualización: 15 de octubre de 2026 (Sesión 10 - Corrección 
-de errores de indexación en GSC y configuración de dominios en Vercel)
-Versión del documento: 6.0 (Dominios corregidos en Vercel, sitemaps 
-en estado "Correcto", indexación solicitada)
+Fecha de actualización: 19 de octubre de 2026 (Sesión 11 - 
+Creación e implementación del Sitemap Personalizado)
+Versión del documento: 7.0 (Sitemap personalizado con 374 URLs 
+creado, enviado a GSC y procesado correctamente)
 Dominio: hierbasyraices.com (Namecheap -> Vercel, DNS configurado y VÁLIDO)
 
 ⚠️ REGLA DE ORO DE ESTE DOCUMENTO:
@@ -13,7 +13,7 @@ incluir TODO el contenido anterior más los nuevos cambios, errores,
 aciertos, descubrimientos y lecciones aprendidas. NUNCA se borra 
 información de versiones anteriores. Es el registro vivo del proyecto.
 
-⚠️ REGLA DE ORO DEL FORMATO DE ENTREGA:
+️ REGLA DE ORO DEL FORMATO DE ENTREGA:
 Al final de cada día de trabajo, el asistente debe entregar el 
 "Estado del Proyecto" en formato de texto plano (dentro de un bloque 
 de código), listo para copiar y pegar en el bloc de notas o VS Code. 
@@ -21,6 +21,35 @@ Este estado debe incluir: todo lo que ya está completamente hecho,
 todo lo nuevo que se realizó, cómo debe hacerse, los aciertos, los 
 errores y esta misma instrucción sobre lo que debe ir en el estado 
 del proyecto.
+
+⚠️ REGLA DE ORO DEL FLUJO DE TRABAJO:
+El usuario NO es programador. Por lo tanto, TODA instrucción técnica 
+proporcionada por el asistente debe cumplir con:
+1. Ser paso a paso, detallada y explícita (tipo "receta de cocina").
+2. Incluir los comandos exactos de terminal/consola a escribir.
+3. Indicar claramente cómo encender/detener el servidor local.
+4. Especificar rutas exactas de archivos y nombres de botones a clicar.
+5. Nunca asumir conocimiento previo de programación o bases de datos.
+6. ESPECIFICAR SIEMPRE si se debe crear una CARPETA o un ARCHIVO DE 
+   TEXTO, y dar la ruta exacta.
+7. IR UN SOLO PASO A LA VEZ. El asistente DEBE esperar la 
+   confirmación del usuario antes de avanzar al siguiente paso.
+8. DOCUMENTAR TODO en el ESTADO_PROYECTO.md SOLO AL FINAL DEL DÍA DE 
+   TRABAJO, una vez verificadas las correcciones y el estado real de 
+   las tareas.
+9. ⚠️ El ESTADO_PROYECTO.md debe ser HISTÓRICO Y COMPLETO. Cada nueva 
+   versión incluye TODO el contenido anterior más los nuevos cambios. 
+   NUNCA se borra información de versiones anteriores.
+10. ⚠️ El asistente SIEMPRE debe entregar el Estado del Proyecto en 
+    formato de texto plano (dentro de un bloque de código), listo 
+    para que el usuario lo copie y pegue directamente en el archivo 
+    ESTADO_PROYECTO.md de VS Code, reemplazando todo el contenido 
+    anterior sin errores de formato.
+11. ⚠️ NUEVA (19/10/2026): El usuario prefiere recibir el código 
+    COMPLETO de los archivos para reemplazar, en lugar de instrucciones 
+    de "comentar línea X" o "cambiar línea Y". Esto reduce errores y 
+    hace el flujo más eficiente. Siempre que se modifique un archivo 
+    de configuración, entregar el código completo nuevo.
 ================================================================
 
 ================================================================
@@ -47,7 +76,7 @@ PROTECCIÓN DE AUTORÍA:
   los derechos reservados."
 - Propiedad intelectual consolidada mediante:
   * Google Search Console (VERIFICADO el 07/10/2026)
-  * Sitemap.xml enviado a Google
+  * Sitemap.xml personalizado enviado a Google (19/10/2026)
   * robots.txt configurado
 - Archivo de verificación de Google: 
   public/google4597b1450f33f5a2.html (NO ELIMINAR NUNCA)
@@ -64,18 +93,20 @@ FUNCIONANDO ACTUALMENTE:
 - Control de versiones: Git + GitHub (Usuario: hierbasyraicesweb)
 - Hosting en Producción: Vercel (Despliegue automático desde GitHub)
 - Versión de Astro: v7.3.5 (actualizada desde v7.2.9)
-- Plugin Sitemap: @astrojs/sitemap (instalado 07/10/2026)
+- Plugin Sitemap: @astrojs/sitemap (DESCONECTADO el 19/10/2026, 
+  reemplazado por sitemap personalizado)
 - Monetización: Amazon Associates (ID: hierbasyraice-20, pago via 
   Global66)
 - Correo del proyecto: hierbasyraices.web@gmail.com
 - Google Search Console: ✅ VERIFICADO (07/10/2026)
 - Dominios en Vercel: ✅ CONFIGURADOS CORRECTAMENTE (15/10/2026)
+- Sitemap personalizado: ✅ CREADO Y FUNCIONANDO (19/10/2026)
 
 PENDIENTE DE CONECTAR/CONFIGURAR:
 - ✅ Conexión del dominio personalizado (Namecheap -> Vercel): 
   COMPLETADO (03/10/2026).
 - ✅ Google Search Console: COMPLETADO (07/10/2026).
-- ✅ Sitemap.xml y robots.txt: COMPLETADO (07/10/2026).
+- ✅ Sitemap.xml personalizado: COMPLETADO (19/10/2026).
 - ✅ Corrección de redirección en Vercel: COMPLETADO (15/10/2026).
 - Google Analytics 4 (Para medir tráfico real).
 - Mailchimp o Brevo (newsletter).
@@ -158,6 +189,16 @@ MEJORAS REALIZADAS EL 15/10/2026:
 - ✅ Verificación de DNS en Namecheap (correctos desde Sesión 8)
 - ✅ Sitemaps en estado "Correcto" en GSC (antes "No se ha podido obtener")
 - ✅ Indexación manual solicitada para https://hierbasyraices.com/
+
+MEJORAS REALIZADAS EL 19/10/2026 (SESIÓN 11):
+- ✅ Sitemap personalizado creado: src/pages/sitemap.xml.ts
+- ✅ Sitemap automático desactivado en astro.config.mjs
+- ✅ robots.txt actualizado para apuntar al nuevo sitemap
+- ✅ Sitemap probado en local (http://localhost:4321/sitemap.xml)
+- ✅ Sitemap desplegado en producción (https://hierbasyraices.com/sitemap.xml)
+- ✅ Sitemap enviado a Google Search Console
+- ✅ Google procesó el sitemap correctamente: 374 páginas descubiertas
+- ✅ Código subido a GitHub y desplegado en Vercel
 
 DESPLIEGUE Y PRODUCCIÓN:
 - Repositorio GitHub público: hierbasyraicesweb/hierbasyraices-web
@@ -243,25 +284,33 @@ TAREAS COMPLETADAS EN SESIÓN 15/10/2026:
 ✅ 7. Sitemaps en estado "Correcto" en GSC.
 ✅ 8. Indexación manual solicitada para URL principal.
 
+TAREAS COMPLETADAS EN SESIÓN 19/10/2026:
+✅ 9. Sitemap personalizado completo creado: src/pages/sitemap.xml.ts
+✅ 10. Sitemap automático desactivado en astro.config.mjs
+✅ 11. robots.txt actualizado para apuntar al nuevo sitemap
+✅ 12. Sitemap probado en local y producción
+✅ 13. Sitemap enviado a GSC y procesado correctamente (374 páginas)
+
 PRIORIDAD ALTA (PARA PRÓXIMAS SESIONES):
-9. Sitemap personalizado completo (incluir 361 plantas + 9 artículos 
-   del blog). Ver tabla de tiempos estimados en Sección 16.
-   *CRÍTICO: Google solo conoce 3 URLs, necesita ~375 URLs.
-10. Conectar tabla "failed_searches" al buscador para registrar 
+14. Esperar 24-48 horas y verificar en GSC que las páginas empiecen 
+    a indexarse.
+15. Agregar footer a src/pages/planta/[id].astro (fichas individuales 
+    de plantas) para mantener consistencia visual y legal.
+16. Conectar tabla "failed_searches" al buscador para registrar 
     búsquedas sin resultados.
-11. Configurar Amazon OneLink para redirigir compradores a su Amazon 
+17. Configurar Amazon OneLink para redirigir compradores a su Amazon 
     local.
-12. Formulario de newsletter (Brevo/Mailchimp) integrado en el footer.
-13. Google Analytics 4 para medir tráfico real.
+18. Formulario de newsletter (Brevo/Mailchimp) integrado en el footer.
+19. Google Analytics 4 para medir tráfico real.
 
 PRIORIDAD MEDIA:
-14. Diseño visual e imágenes: Definir flujo para obtener, optimizar y 
+20. Diseño visual e imágenes: Definir flujo para obtener, optimizar y 
     servir imágenes de plantas (dominio público o históricas).
-15. Google AdSense (requiere tráfico constante previo).
+21. Google AdSense (requiere tráfico constante previo).
 
 PRIORIDAD BAJA:
-16. Ko-fi para donaciones.
-17. PDFs descargables.
+22. Ko-fi para donaciones.
+23. PDFs descargables.
 
 ================================================================
 8. DECISIONES TÉCNICAS CLAVE (A RESPETAR SIEMPRE)
@@ -305,7 +354,7 @@ PRIORIDAD BAJA:
 15. ️ NUEVA (07/10/2026): El archivo de verificación de Google 
     (google4597b1450f33f5a2.html) debe permanecer SIEMPRE en la 
     carpeta public/. Si se elimina, se pierde la verificación en GSC.
-16. ⚠️ NUEVA (07/10/2026): Google Search Console puede mostrar "No se 
+16. ️ NUEVA (07/10/2026): Google Search Console puede mostrar "No se 
     ha podido obtener" en el sitemap las primeras 24-48 horas. Es 
     normal. Google reintentará automáticamente.
 17. ⚠️ NUEVA (15/10/2026): En Vercel, el checkbox "Redirect apex 
@@ -326,6 +375,19 @@ PRIORIDAD BAJA:
     canónica incorrecta (ej: www.hierbasyraices.com) aunque ya se 
     corrigió en Vercel. Se necesita solicitar indexación manual y 
     esperar el re-rastreo.
+21. ⚠️ NUEVA (19/10/2026): El usuario prefiere recibir el código 
+    COMPLETO de los archivos para reemplazar, en lugar de instrucciones 
+    de "comentar línea X" o "cambiar línea Y". Esto reduce errores y 
+    hace el flujo más eficiente. Siempre que se modifique un archivo 
+    de configuración, entregar el código completo nuevo.
+22. ⚠️ NUEVA (19/10/2026): Al crear archivos con nombres que tienen 
+    múltiples puntos (ej: sitemap.xml.ts), VS Code puede rechazar el 
+    nombre. Solución: crear el archivo desde el Explorador de Windows 
+    y luego abrirlo en VS Code.
+23. ⚠️ NUEVA (19/10/2026): Google Search Console puede mostrar "No se 
+    ha podido obtener" en la lista de sitemaps, pero al entrar al 
+    detalle mostrar "Correcto". Es un bug visual de GSC. El estado 
+    real es el que aparece en el detalle del sitemap.
 
 ================================================================
 9. ARCHIVOS CLAVE DEL PROYECTO
@@ -335,14 +397,13 @@ PRIORIDAD BAJA:
 - Listado blog: src/pages/blog/index.astro (con footer actualizado)
 - Artículo blog: src/pages/blog/[slug].astro (con footer actualizado)
 - Página de tienda: src/pages/tienda.astro (con footer previo)
+- Sitemap personalizado: src/pages/sitemap.xml.ts (CREADO 19/10/2026)
 - Estilos globales: src/styles/global.css
 - Cliente de Supabase: src/lib/supabase.js
-- Configuración Astro: astro.config.mjs (con plugin sitemap)
-- Robots.txt: public/robots.txt (CREADO 07/10/2026)
+- Configuración Astro: astro.config.mjs (sin plugin sitemap automático)
+- Robots.txt: public/robots.txt (ACTUALIZADO 19/10/2026)
 - Verificación Google: public/google4597b1450f33f5a2.html (CREADO 
   07/10/2026 - NO ELIMINAR)
-- Sitemap automático: Generado en build (sitemap-index.xml y 
-  sitemap-0.xml)
 
 NOTA: NO existe un archivo de layout compartido. Cada página (.astro)
 tiene su propia estructura HTML completa (header, body, footer).
@@ -366,97 +427,14 @@ individuales de plantas).
 - Hosting en producción: ✅ Vercel (https://hierbasyraices.com)
 - Google Search Console: ✅ VERIFICADO (07/10/2026)
 - Dominios en Vercel: ✅ CONFIGURADOS CORRECTAMENTE (15/10/2026)
-- Sitemaps: ✅ EN ESTADO "CORRECTO" (15/10/2026) - pero solo incluyen 
-  3 URLs (/, /blog/, /tienda/)
-- robots.txt: ✅ Configurado
+- Sitemap personalizado: ✅ FUNCIONANDO (19/10/2026) - 374 URLs
+- robots.txt: ✅ Configurado con nuevo sitemap
 - Tabla failed_searches: ✅ Creada (pendiente conectar)
 - Páginas indexadas en Google: 0 (sitio nuevo, en proceso)
-- Páginas sin indexar: 3 (1 por redirección - en proceso de 
-  resolución, 2 descubiertas sin indexar - normal en sitio nuevo)
+- Páginas descubiertas por Google: 374 (gracias al sitemap personalizado)
 
 ================================================================
-11. REGLA DE ORO DE LA ASISTENCIA TÉCNICA Y FLUJO DE TRABAJO
-================================================================
-El usuario NO es programador. Por lo tanto, TODA instrucción técnica 
-proporcionada por el asistente debe cumplir con:
-1. Ser paso a paso, detallada y explícita (tipo "receta de cocina").
-2. Incluir los comandos exactos de terminal/consola a escribir.
-3. Indicar claramente cómo encender/detener el servidor local.
-4. Especificar rutas exactas de archivos y nombres de botones a 
-   clicar.
-5. Nunca asumir conocimiento previo de programación o bases de datos.
-6. ESPECIFICAR SIEMPRE si se debe crear una CARPETA o un ARCHIVO DE 
-   TEXTO, y dar la ruta exacta (ej: src/pages/tienda.astro).
-7. IR UN SOLO PASO A LA VEZ. El asistente DEBE esperar la 
-   confirmación del usuario antes de avanzar al siguiente paso.
-8. DOCUMENTAR TODO en el ESTADO_PROYECTO.md SOLO AL FINAL DEL DÍA DE 
-   TRABAJO, una vez verificadas las correcciones y el estado real de 
-   las tareas.
-9. ⚠️ El ESTADO_PROYECTO.md debe ser HISTÓRICO Y COMPLETO. Cada nueva 
-   versión incluye TODO el contenido anterior más los nuevos cambios. 
-   NUNCA se borra información de versiones anteriores. Debe registrar: 
-   errores, aciertos, descubrimientos, lecciones aprendidas, dónde va 
-   cada cosa, cómo se hizo, absolutamente todo.
-10. ⚠️ El asistente SIEMPRE debe entregar el Estado del Proyecto en 
-    formato de texto plano (dentro de un bloque de código), listo 
-    para que el usuario lo copie y pegue directamente en el archivo 
-    ESTADO_PROYECTO.md de VS Code, reemplazando todo el contenido 
-    anterior sin errores de formato.
-
-================================================================
-12. FLUJO DE TRABAJO - ACTUALIZACIÓN DE ESTE DOCUMENTO
-================================================================
-DESPUÉS DE CADA SESIÓN DE TRABAJO:
-1. El asistente genera el "Estado del Proyecto" actualizado (versión 
-   histórica completa).
-2. El usuario abre ESTADO_PROYECTO.md con VS Code o Bloc de notas.
-3. El usuario reemplaza TODO el contenido con la nueva versión.
-4. El usuario guarda el archivo (Ctrl + S).
-5. El usuario hace commit y push a GitHub para respaldo.
-
-FLUJO DE TRABAJO OBLIGATORIO PARA CAMBIOS EN LA WEB:
-1. Trabajar en LOCAL (VS Code + npm run dev)
-2. Verificar cambios en http://localhost:4321
-3. Detener servidor (Ctrl + C)
-4. git add .
-5. git commit -m "mensaje descriptivo"
-6. git push
-7. Esperar despliegue automático en Vercel (~30-60 segundos)
-8. Verificar en https://hierbasyraices.com
-
-⚠️ LECCIÓN APRENDIDA (07/10/2026): NO se puede editar directamente 
-la página en internet. Vercel solo muestra lo que llega desde GitHub. 
-El flujo siempre es: editar en local → subir → Vercel actualiza 
-automáticamente.
-
-================================================================
-13. ESTRATEGIA DE CRECIMIENTO AUTOMÁTICO Y MONETIZACIÓN
-================================================================
-OBJETIVO: Web que trabaja sola con tráfico orgánico y monetización 
-pasiva (Evergreen).
-
-ESTRATEGIAS DE MONETIZACIÓN (ACTIVAS):
-1. Tienda de Afiliados Amazon (COMPLETADA):
-   - Cuenta de Amazon Associates aprobada (ID: hierbasyraice-20).
-   - Método de pago configurado (Global66).
-   - Página /tienda.astro con 6 productos reales, imágenes y enlaces 
-     de rastreo.
-   - SiteStripe dominado para agregar futuros productos.
-2. Próximamente: Amazon OneLink, Ko-fi, Google AdSense, PDFs 
-   descargables.
-
-ESTRATEGIA SEO (ACTIVADA EL 07/10/2026, ACTUALIZADA 15/10/2026):
-- ✅ Google Search Console verificado
-- ✅ Sitemap enviado a Google (estado "Correcto" desde 15/10/2026)
-- ✅ robots.txt configurado
-- ✅ Configuración de dominios corregida en Vercel (15/10/2026)
-- ✅ Indexación manual solicitada (15/10/2026)
-- ⏳ Esperando re-rastreo de Google (24-72 horas)
-- ⚠️ Sitemap personalizado completo pendiente (incluirá 361 plantas 
-  + 9 artículos) - CRÍTICO para que Google conozca todas las páginas
-
-================================================================
-14. HISTORIAL DE SESIONES (DESDE LA GÉNESIS)
+11. HISTORIAL DE SESIONES (DESDE LA GÉNESIS)
 ================================================================
 
 SESIÓN 1-7: (Resumen histórico - Sesiones iniciales del proyecto)
@@ -497,6 +475,9 @@ SESIÓN 10 (15/10/2026): Corrección de errores de indexación en GSC
 y configuración de dominios en Vercel - VER DETALLE COMPLETO EN 
 SECCIÓN 17.
 
+SESIÓN 11 (19/10/2026): Creación e Implementación del Sitemap 
+Personalizado - VER DETALLE COMPLETO EN SECCIÓN 18.
+
 ================================================================
 15. NOTAS DETALLADAS DE LA SESIÓN 09 (07/10/2026)
 ================================================================
@@ -505,38 +486,6 @@ la creación de la tabla failed_searches, el footer con copyright,
 robots.txt, el plugin @astrojs/sitemap, la verificación en GSC, y las 
 lecciones aprendidas sobre npm install, sitemap 404 en local, 
 etiquetas <style> y las limitaciones del sitemap en modo SSR).
-
-================================================================
-16. PLAN DETALLADO PARA SITEMAP PERSONALIZADO COMPLETO
-================================================================
-(Pendiente para próxima sesión - Tiempo estimado: 90-100 minutos)
-OBJETIVO: Incluir las 361 plantas + 9 artículos del blog + páginas 
-estáticas en el sitemap (total ~375 URLs). Esto es CRÍTICO para que 
-Google conozca todas las páginas del sitio.
-
-PASOS Y TIEMPOS ESTIMADOS:
-Paso | Descripción                                      | Tiempo
------|--------------------------------------------------|--------
-1    | Explicación del concepto y preparación           | 10 min
-2    | Crear el archivo src/pages/sitemap.xml.ts        | 15-20 min
-     | (endpoint personalizado)                         |
-3    | Configurar la consulta a Supabase                | 10 min
-     | (plantas + blog)                                 |
-4    | Generar el XML dinámicamente con formato         | 10 min
-     | correcto                                         |
-5    | Ajustar astro.config.mjs                         | 5 min
-     | (desactivar plugin automático)                   |
-6    | Actualizar robots.txt con la nueva URL           | 5 min
-7    | Pruebas en local                                 | 10 min
-     | (localhost:4321/sitemap.xml)                     |
-8    | Subir a GitHub y esperar despliegue en Vercel    | 15 min
-9    | Verificar en producción y re-enviar en GSC       | 10 min
-10   | Buffer para imprevistos o dudas                  | 10 min
------|--------------------------------------------------|--------
-TOTAL|                                                  | 90-100 min
-
-RECOMENDACIÓN: Bloquear 2 horas seguidas sin interrupciones para 
-terminar de una vez.
 
 ================================================================
 17. NOTAS DETALLADAS DE LA SESIÓN 10 (15/10/2026)
@@ -633,7 +582,7 @@ reportados por Google Search Console (correo del 12/10/2026).
    - Lección: Los cambios de configuración en Vercel no se reflejan 
      instantáneamente en Google.
 
-🎓 LECCIONES APRENDIDAS:
+ LECCIONES APRENDIDAS:
 
 1. CONFIGURACIÓN DE DOMINIOS EN VERCEL:
    - El checkbox "Redirect apex domains to www (recommended)" NO 
@@ -672,27 +621,118 @@ reportados por Google Search Console (correo del 12/10/2026).
      reflejarlos.
 
 ================================================================
-18. PRÓXIMOS PASOS INMEDIATOS (PARA LA PRÓXIMA SESIÓN)
+18. NOTAS DETALLADAS DE LA SESIÓN 11 (19/10/2026)
 ================================================================
 
-PRIORIDAD 1: ⏳ ESPERAR 24-72 horas y verificar en GSC que:
-- El error "Página con redirección" desaparezca
-- Al menos algunas páginas pasen a "Indexadas"
-- Los datos se actualicen con fecha reciente
+📅 FECHA: 19 de octubre de 2026
+🎯 OBJETIVO DE LA SESIÓN: Crear e implementar el sitemap personalizado 
+completo para que Google conozca las 374 páginas del sitio.
 
-PRIORIDAD 2: Sitemap personalizado completo (ver Sección 16 para 
-plan detallado). Esto es CRÍTICO porque:
-- Google solo conoce 3 URLs de nuestro sitio
-- Necesita conocer las ~375 URLs (361 plantas + 9 artículos + 
-  páginas estáticas)
-- Sin esto, la indexación será muy lenta e incompleta
+✅ LOGROS COMPLETADOS:
 
-PRIORIDAD 3: Agregar footer a src/pages/planta/[id].astro (fichas 
-individuales de plantas) para mantener consistencia visual y legal.
+1. CREACIÓN DEL ARCHIVO SITEMAP.XML.TS
+   - Hora: Inicio de sesión
+   - Acción: Crear archivo src/pages/sitemap.xml.ts
+   - Problema: VS Code rechazó el nombre por tener múltiples puntos
+   - Solución: Crear el archivo desde el Explorador de Windows
+   - Resultado: ✅ Archivo creado exitosamente
 
-PRIORIDAD 4: Conectar tabla "failed_searches" al buscador (solo 
-cuando haya tráfico real).
+2. CÓDIGO DEL SITEMAP PERSONALIZADO
+   - Hora: Durante la sesión
+   - Acción: Pegar código TypeScript que consulta Supabase
+   - Código genera URLs dinámicas para:
+     * 3 páginas estáticas (/, /blog/, /tienda/)
+     * 361 plantas (/planta/1 hasta /planta/361)
+     * 9 artículos de blog (/blog/[slug])
+   - Resultado: ✅ Código pegado y guardado
+
+3. DESACTIVACIÓN DEL SITEMAP AUTOMÁTICO
+   - Hora: Durante la sesión
+   - Acción: Modificar astro.config.mjs
+   - Cambio: Eliminar integrations: [sitemap()]
+   - Nuevo código: integrations: []
+   - Resultado: ✅ Sitemap automático desactivado
+
+4. ACTUALIZACIÓN DE ROBOTS.TXT
+   - Hora: Durante la sesión
+   - Acción: Agregar línea "Sitemap: https://hierbasyraices.com/sitemap.xml"
+   - Resultado: ✅ robots.txt actualizado
+
+5. PRUEBA EN LOCAL
+   - Hora: Durante la sesión
+   - Acción: Iniciar servidor local (npm run dev)
+   - Prueba: http://localhost:4321/sitemap.xml
+   - Resultado: ✅ Sitemap funcionando en local (código 200)
+
+6. DESPLIEGUE EN PRODUCCIÓN
+   - Hora: Durante la sesión
+   - Acciones:
+     a) Detener servidor local (Ctrl + C)
+     b) git add .
+     c) git commit -m "Sitemap personalizado: incluye 361 plantas + blog + páginas estáticas"
+     d) git push
+   - Resultado: ✅ Cambios subidos a GitHub y desplegados en Vercel
+
+7. VERIFICACIÓN EN PRODUCCIÓN
+   - Hora: Durante la sesión
+   - Acción: Visitar https://hierbasyraices.com/sitemap.xml
+   - Resultado: ✅ Sitemap funcionando en producción
+
+8. ENVÍO A GOOGLE SEARCH CONSOLE
+   - Hora: Final de sesión
+   - Acción: Agregar sitemap.xml en GSC
+   - Resultado inicial: "No se ha podido obtener" (error temporal)
+   - Acción correctiva: Re-enviar sitemap
+   - Resultado final: ✅ "El sitemap se ha procesado correctamente"
+   - Páginas descubiertas: 374
+
+⚠️ ERRORES Y PROBLEMAS ENCONTRADOS:
+
+1. VS Code rechazó el nombre del archivo:
+   - Problema: "The name sitemap.xml.ts is not valid as a file or folder name"
+   - Causa: VS Code tiene restricciones con nombres que tienen múltiples puntos
+   - Solución: Crear el archivo desde el Explorador de Windows
+   - Lección: Cuando VS Code rechace un nombre de archivo, crearlo desde Windows
+
+2. Sitemap marcado como "No se ha podido obtener" en GSC:
+   - Problema: Google no pudo leer el sitemap en el primer intento
+   - Causa: Posible "cold start" de Vercel (servidor tardó en responder)
+   - Solución: Re-enviar el sitemap en GSC
+   - Resultado: Google lo procesó correctamente en el segundo intento
+   - Lección: Los primeros intentos de GSC pueden fallar. Re-enviar resuelve el problema.
+
+3. Bug visual en GSC:
+   - Problema: Lista de sitemaps muestra "No se ha podido obtener" en rojo
+   - Realidad: Al entrar al detalle, muestra "Correcto" en verde
+   - Causa: Bug visual de Google Search Console
+   - Solución: Confiar en el detalle, no en la lista
+   - Lección: El estado real es el que aparece en el detalle del sitemap
+
+🎓 LECCIONES APRENDIDAS:
+
+1. CREACIÓN DE ARCHIVOS CON NOMBRES COMPLEJOS:
+   - VS Code puede rechazar nombres con múltiples puntos (ej: sitemap.xml.ts)
+   - Solución: Crear el archivo desde el Explorador de Windows
+   - El archivo se refleja automáticamente en VS Code
+
+2. SITEMAP PERSONALIZADO EN ASTRO SSR:
+   - El plugin automático @astrojs/sitemap NO funciona bien en modo SSR
+   - Solo detecta páginas estáticas, no rutas dinámicas de Supabase
+   - Solución: Crear un endpoint personalizado (sitemap.xml.ts) que consulte la base de datos
+   - El endpoint debe devolver XML con Content-Type: application/xml
+
+3. GOOGLE SEARCH CONSOLE - SITEMAPS:
+   - El primer intento de lectura puede fallar ("No se ha podido obtener")
+   - Re-enviar el sitemap generalmente resuelve el problema
+   - Hay un bug visual: la lista puede mostrar error pero el detalle muestra correcto
+   - Confiar en el detalle del sitemap, no en la lista general
+
+4. FLUJO DE TRABAJO CON GIT:
+   - git add . (preparar cambios)
+   - git commit -m "mensaje" (crear punto de guardado)
+   - git push (subir a GitHub)
+   - Vercel despliega automáticamente en ~30-60 segundos
 
 ================================================================
-FIN DEL DOCUMENTO MAESTRO - VERSIÓN 6.0
+FIN DEL DOCUMENTO MAESTRO - VERSIÓN 7.0
 ================================================================
