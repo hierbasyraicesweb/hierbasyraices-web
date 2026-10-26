@@ -67,9 +67,15 @@ const totalPlantas = plantas?.length || 0;
         </article>
       ))}
     </div>
+    
+    <!-- MENSAJE DE SIN RESULTADOS (Oculto por defecto con la clase 'hidden') -->
+    <div id="mensaje-sin-resultados" class="hidden max-w-6xl mx-auto text-center py-12">
+      <p class="text-xl text-gray-600">No encontramos resultados para esa búsqueda.</p>
+      <p class="text-sm text-gray-500 mt-2">Prueba con otros términos como "digestivo", "ansiedad" o "piel".</p>
+    </div>
   </section>
 
-  <!-- NUEVO FOOTER CON COPYRIGHT Y DISCLAIMER LEGAL -->
+  <!-- FOOTER CON COPYRIGHT Y DISCLAIMER LEGAL -->
   <footer class="bg-[#e8f0e3] border-t-2 border-[#c8e6c9] py-8 px-4 mt-12">
     <div class="max-w-4xl mx-auto text-center">
       <p class="text-[#2d5016] font-semibold mb-3">© 2026 Hierbas y Raíces. Todos los derechos reservados.</p>
@@ -87,12 +93,19 @@ const totalPlantas = plantas?.length || 0;
     </div>
   </footer>
 
-  <!-- AQUÍ ESTÁ LA CLAVE: define:vars pasa las variables del servidor al cliente -->
-  <script define:vars={{ plantas }}>
+  <!-- LÓGICA DEL BUSCADOR CON DEBOUNCE: espera 1 segundo después de que el usuario deje de escribir -->
+  <script>
     const inputBuscador = document.getElementById('buscador');
     const gridPlantas = document.getElementById('grid-plantas');
+    const mensajeSinResultados = document.getElementById('mensaje-sin-resultados');
     const contador = document.getElementById('contador');
     const todasLasTarjetas = document.querySelectorAll('.planta-card');
+    
+    // Conjunto para no enviar la misma búsqueda dos veces en la misma sesión
+    const terminosYaEnviados = new Set();
+    
+    // Variable para el debounce (esperar a que el usuario termine de escribir)
+    let timeoutBusqueda;
 
     function normalizar(texto) {
       if (!texto) return '';
@@ -104,6 +117,7 @@ const totalPlantas = plantas?.length || 0;
       
       if (textoBusqueda === '') {
         todasLasTarjetas.forEach(card => card.style.display = 'block');
+        mensajeSinResultados.classList.add('hidden');
         contador.textContent = 'Mostrando ' + todasLasTarjetas.length + ' plantas';
         return;
       }
@@ -130,11 +144,37 @@ const totalPlantas = plantas?.length || 0;
       contador.textContent = 'Mostrando ' + coincidencias + ' planta' + (coincidencias !== 1 ? 's' : '');
       
       if (coincidencias === 0) {
-        gridPlantas.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-xl text-gray-600">No encontramos resultados para esa búsqueda.</p><p class="text-sm text-gray-500 mt-2">Prueba con otros términos como "digestivo", "ansiedad" o "piel".</p></div>';
+        mensajeSinResultados.classList.remove('hidden');
+        
+        // ENVIAR AL ENDPOINT: Solo si tiene 3+ caracteres y no se ha enviado antes
+        if (textoBusqueda.trim().length >= 3 && !terminosYaEnviados.has(textoBusqueda)) {
+          terminosYaEnviados.add(textoBusqueda);
+          
+          fetch('/api/failed-search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ search_term: textoBusqueda })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              console.log('✅ Búsqueda fallida guardada:', textoBusqueda);
+            } else {
+              console.error(' Error al guardar:', data.error);
+            }
+          })
+          .catch(err => console.error(' Error de red:', err));
+        }
+      } else {
+        mensajeSinResultados.classList.add('hidden');
       }
     }
 
-    inputBuscador.addEventListener('input', buscarPlantas);
+    // DEBOUNCE: Esperar 1 segundo después de que el usuario deje de escribir
+    inputBuscador.addEventListener('input', () => {
+      clearTimeout(timeoutBusqueda);
+      timeoutBusqueda = setTimeout(buscarPlantas, 1000);
+    });
   </script>
 </body>
 </html>
