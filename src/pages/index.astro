@@ -1,6 +1,7 @@
 ---
 import { supabase } from '../lib/supabase';
 import '../styles/global.css';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 
 // 1. Obtener plantas de Supabase
 const { data: plantas, error } = await supabase
@@ -20,6 +21,7 @@ const totalPlantas = plantas?.length || 0;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hierbas y Raíces</title>
+  <GoogleAnalytics />
 </head>
 <body class="bg-[#f5f5dc]">
   <header class="bg-[#e8f0e3] py-12 px-4 text-center">

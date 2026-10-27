@@ -3,6 +3,7 @@ export const prerender = false;
 
 import { supabase } from '../../lib/supabase';
 import '../../styles/global.css';
+import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
 
 const plantId = Astro.params.id;
 
@@ -22,6 +23,7 @@ if (error) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{plant?.nombre_principal || 'Planta no encontrada'} - Hierbas y Raíces</title>
+    <GoogleAnalytics />
   </head>
   <body class="bg-base-200 min-h-screen" data-theme="hierbas">
     <!-- Header -->
@@ -84,14 +86,14 @@ if (error) {
           <!-- Nombres por región -->
           {plant.nombres_espana && (
             <div class="mb-6">
-              <h2 class="text-xl font-bold text-primary mb-2">🇪🇸 Nombres en España</h2>
+              <h2 class="text-xl font-bold text-primary mb-2">🇸 Nombres en España</h2>
               <p class="text-base-content">{plant.nombres_espana}</p>
             </div>
           )}
 
           {plant.nombres_cono_sur && (
             <div class="mb-6">
-              <h2 class="text-xl font-bold text-primary mb-2">🌎 Nombres en el Cono Sur</h2>
+              <h2 class="text-xl font-bold text-primary mb-2"> Nombres en el Cono Sur</h2>
               <p class="text-base-content">{plant.nombres_cono_sur}</p>
             </div>
           )}
@@ -129,7 +131,7 @@ if (error) {
           <!-- Preparación Tradicional -->
           {plant.preparacion_tradicional && (
             <div class="mb-6">
-              <h2 class="text-xl font-bold text-primary mb-2">🍵 Preparación Tradicional</h2>
+              <h2 class="text-xl font-bold text-primary mb-2"> Preparación Tradicional</h2>
               <p class="text-base-content leading-relaxed">{plant.preparacion_tradicional}</p>
             </div>
           )}
@@ -156,7 +158,7 @@ if (error) {
           <!-- Fuentes -->
           {plant.fuentes && (
             <div class="mb-6">
-              <h2 class="text-xl font-bold text-primary mb-2">📚 Fuentes</h2>
+              <h2 class="text-xl font-bold text-primary mb-2"> Fuentes</h2>
               <p class="text-base-content text-sm">{plant.fuentes}</p>
             </div>
           )}
