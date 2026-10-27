@@ -1,6 +1,7 @@
 ---
 import { supabase } from '../../lib/supabase';
 import '../../styles/global.css';
+import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
 
 // 1. FUNCIÓN OBLIGATORIA PARA RUTAS DINÁMICAS EN ASTRO
 export async function getStaticPaths() {
@@ -45,6 +46,7 @@ const canonicalURL = `https://hierbasyraices.com/blog/${post.slug}`;
   <title>{seoTitle}</title>
   <meta name="description" content={seoDescription} />
   <link rel="canonical" href={canonicalURL} />
+  <GoogleAnalytics />
   
   <!-- Estilos para que el texto del blog se vea bonito (Movido al head para estructura HTML válida) -->
   <style is:global>
