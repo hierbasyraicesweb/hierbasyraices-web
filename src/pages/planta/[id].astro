@@ -84,7 +84,7 @@ if (error) {
           <!-- Nombres por región -->
           {plant.nombres_espana && (
             <div class="mb-6">
-              <h2 class="text-xl font-bold text-primary mb-2">🇸 Nombres en España</h2>
+              <h2 class="text-xl font-bold text-primary mb-2">🇪🇸 Nombres en España</h2>
               <p class="text-base-content">{plant.nombres_espana}</p>
             </div>
           )}
@@ -113,7 +113,7 @@ if (error) {
           <!-- Origen y Tradición -->
           {plant.origen_tradicion && (
             <div class="mb-6">
-              <h2 class="text-xl font-bold text-primary mb-2"> Origen y Tradición</h2>
+              <h2 class="text-xl font-bold text-primary mb-2">📜 Origen y Tradición</h2>
               <p class="text-base-content leading-relaxed">{plant.origen_tradicion}</p>
             </div>
           )}
@@ -168,16 +168,31 @@ if (error) {
         </div>
       )}
 
-      <!-- Footer -->
+      <!-- Footer Legal Obligatorio -->
       <footer class="footer footer-center p-10 mt-12" style="background-color: #3d2817; color: #f5f5dc;">
-        <div>
-          <p class="font-bold text-lg">🌿 Hierbas <span style="color: #8b6f47;">y Raíces</span></p>
-          <p>Enciclopedia de plantas medicinales tradicionales</p>
-          <p class="text-sm mt-2">
-            Conocimiento ancestral para el bienestar natural
-          </p>
+        <div class="max-w-3xl text-center space-y-4">
+          
+          <!-- Disclaimer Legal -->
+          <div class="p-4 rounded-lg" style="background-color: rgba(139, 111, 71, 0.2); border: 1px solid #8b6f47;">
+            <p class="font-bold text-sm mb-2" style="color: #f5f5dc;">⚠️ AVISO LEGAL</p>
+            <p class="text-xs leading-relaxed">
+              Esta información tiene fines históricos y culturales, y no constituye una recomendación de uso, dosis ni tratamiento. 
+              Consulte a un profesional de la salud antes de usar cualquier planta con fines terapéuticos.
+            </p>
+          </div>
+          
+          <!-- Identidad y Copyright -->
+          <div>
+            <p class="font-bold text-lg">🌿 Hierbas <span style="color: #8b6f47;">y Raíces</span></p>
+            <p class="text-sm opacity-90">Enciclopedia de patrimonio etnobotánico iberoamericano</p>
+            <p class="text-xs mt-4 opacity-70">
+              © 2026 Hierbas y Raíces. Todos los derechos reservados.
+            </p>
+          </div>
+          
         </div>
       </footer>
+
     </div>
   </body>
 </html>
