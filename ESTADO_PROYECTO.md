@@ -1,21 +1,19 @@
-================================================================
+Hola buenos días! Estamos trabajando en este proyecto y hoy nos toca configurar Brevo: Recuerda que solo después de la sesión de trabajo, debes entregarme el estado del proyecto en txt, histórico, más todo lo que hagamos, conversemos, errores, aciertos, apps, herramientas utilizadas, decisiones tomadas, los pendientes, etc.
+
+================================================================================
 ESTADO MAESTRO DEL PROYECTO - HIERBAS Y RAÍCES
-================================================================
-Fecha de actualización: 26 de octubre de 2026 (Sesión 12 - 
-Conexión exitosa de failed_searches, despliegue a producción y 
-aclaraciones de flujo de trabajo)
-Versión del documento: 9.0 (Endpoint API creado, debounce 
-implementado, despliegue en Vercel exitoso y reglas de flujo 
-reafirmadas)
+================================================================================
+Fecha de actualización: 30 de octubre de 2026 (Sesión 15 - Migración Mailchimp a Brevo)
+Versión del documento: 12.0 (Mailchimp eliminado, Brevo configurado parcialmente)
 Dominio: hierbasyraices.com (Namecheap -> Vercel, DNS configurado y VÁLIDO)
 
-️ REGLA DE ORO DE ESTE DOCUMENTO:
+REGLA DE ORO DE ESTE DOCUMENTO:
 Este archivo es HISTÓRICO y COMPLETO. Cada nueva versión debe 
 incluir TODO el contenido anterior más los nuevos cambios, errores, 
 aciertos, descubrimientos y lecciones aprendidas. NUNCA se borra 
 información de versiones anteriores. Es el registro vivo del proyecto.
 
-⚠️ REGLA DE ORO DEL FORMATO DE ENTREGA:
+REGLA DE ORO DEL FORMATO DE ENTREGA:
 Al final de cada día de trabajo, el asistente debe entregar el 
 "Estado del Proyecto" en formato de texto plano (dentro de un bloque 
 de código), listo para copiar y pegar en el bloc de notas o VS Code. 
@@ -48,11 +46,14 @@ proporcionada por el asistente debe cumplir con:
     para que el usuario lo copie y pegue directamente en el archivo 
     ESTADO_PROYECTO.md de VS Code, reemplazando todo el contenido 
     anterior sin errores de formato.
-11. ⚠️ NUEVA (19/10/2026): El usuario prefiere recibir el código 
+11. ️ NUEVA (19/10/2026): El usuario prefiere recibir el código 
     COMPLETO de los archivos para reemplazar, en lugar de instrucciones 
     de "comentar línea X" o "cambiar línea Y". Esto reduce errores y 
     hace el flujo más eficiente. Siempre que se modifique un archivo 
     de configuración, entregar el código completo nuevo.
+12. ️ NUEVA (30/10/2026): Al migrar entre herramientas de email 
+    marketing, siempre verificar PRIMERO las limitaciones exactas del 
+    plan gratuito antes de invertir tiempo diseñando flujos complejos.
 ================================================================
 
 ================================================================
@@ -101,10 +102,15 @@ FUNCIONANDO ACTUALMENTE:
 - Monetización: Amazon Associates (ID: hierbasyraice-20, pago via 
   Global66)
 - Correo del proyecto: hierbasyraices.web@gmail.com
+- Email Marketing: Brevo (Plan Free, cuenta creada el 30/10/2026)
 - Google Search Console: ✅ VERIFICADO (07/10/2026)
 - Dominios en Vercel: ✅ CONFIGURADOS CORRECTAMENTE (15/10/2026)
 - Sitemap personalizado: ✅ CREADO Y FUNCIONANDO (19/10/2026)
 - API de búsquedas fallidas: ✅ CREADA Y FUNCIONANDO (26/10/2026)
+- Google Analytics 4: ✅ CONFIGURADO E INTEGRADO (27/10/2026)
+  * ID de Medición: G-7F56LTF9QY
+  * Propiedad: hierbasyraices.com
+  * Estado: ACTIVO Y RECIBIENDO DATOS EN TIEMPO REAL
 
 PENDIENTE DE CONECTAR/CONFIGURAR:
 - ✅ Conexión del dominio personalizado (Namecheap -> Vercel): 
@@ -113,8 +119,12 @@ PENDIENTE DE CONECTAR/CONFIGURAR:
 - ✅ Sitemap.xml personalizado: COMPLETADO (19/10/2026).
 - ✅ Corrección de redirección en Vercel: COMPLETADO (15/10/2026).
 - ✅ Tabla failed_searches conectada al buscador: COMPLETADO (26/10/2026).
-- Google Analytics 4 (Para medir tráfico real).
-- Mailchimp o Brevo (newsletter).
+- ✅ Footer legal en fichas de plantas: COMPLETADO (27/10/2026).
+- ✅ Google Analytics 4: COMPLETADO (27/10/2026).
+- ✅ Mailchimp: ELIMINADO (30/10/2026) - No permitía automatizaciones gratis.
+- ️ Brevo: CUENTA CREADA Y CONFIGURADA PARCIALMENTE (30/10/2026).
+- ⏸️ Formulario de Newsletter (Brevo): PENDIENTE DE CREACIÓN E INTEGRACIÓN EN FOOTER.
+- ⏸️ Automatización de bienvenida en Brevo: PENDIENTE DE ACTIVAR.
 - Google AdSense, Ko-fi.
 
 ================================================================
@@ -174,11 +184,7 @@ MEJORAS DE NAVEGACIÓN Y CONTENIDO REALIZADAS:
   enlaces de rastreo (tag=hierbasyraice-20) funcionando correctamente.
 
 MEJORAS REALIZADAS EL 07/10/2026:
-- ✅ Footer con Copyright y Disclaimer legal agregado en:
-  * src/pages/index.astro (Home)
-  * src/pages/blog/index.astro (Listado de blog)
-  * src/pages/blog/[slug].astro (Artículo individual)
-  * src/pages/tienda.astro (ya lo tenía previamente)
+- ✅ Footer con Copyright y Disclaimer legal agregado en páginas principales.
 - ✅ Archivo robots.txt creado en public/robots.txt
 - ✅ Plugin @astrojs/sitemap instalado y configurado
 - ✅ Sitemap generado automáticamente en producción
@@ -186,13 +192,10 @@ MEJORAS REALIZADAS EL 07/10/2026:
 - ✅ Sitemap enviado a Google Search Console
 
 MEJORAS REALIZADAS EL 15/10/2026:
-- ✅ Corrección de configuración de dominios en Vercel:
-  * hierbasyraices.com → Production (dominio principal, sin redirección)
-  * www.hierbasyraices.com → 301 Moved Permanently → hierbasyraices.com
-  * hierbasyraices-web.vercel.app → Production (respaldo)
-- ✅ Verificación de DNS en Namecheap (correctos desde Sesión 8)
-- ✅ Sitemaps en estado "Correcto" en GSC
-- ✅ Indexación manual solicitada para URL principal
+- ✅ Corrección de configuración de dominios en Vercel.
+- ✅ Verificación de DNS en Namecheap.
+- ✅ Sitemaps en estado "Correcto" en GSC.
+- ✅ Indexación manual solicitada para URL principal.
 
 MEJORAS REALIZADAS EL 19/10/2026 (SESIÓN 11):
 - ✅ Sitemap personalizado creado: src/pages/sitemap.xml.ts
@@ -204,17 +207,75 @@ MEJORAS REALIZADAS EL 19/10/2026 (SESIÓN 11):
 
 MEJORAS REALIZADAS EL 26/10/2026 (SESIÓN 12):
 - ✅ Configuración de Row Level Security (RLS) en Supabase para la 
-  tabla `failed_searches`, permitiendo inserciones públicas anónimas.
-- ✅ Creación de función y trigger en SQL para acumular el contador 
-  (`count`) si el término de búsqueda ya existe, evitando filas duplicadas.
-- ✅ Creación del endpoint API en Astro: `src/pages/api/failed-search.ts` 
-  para recibir las búsquedas de forma segura desde el servidor.
+  tabla `failed_searches`.
+- ✅ Creación de función y trigger en SQL para acumular el contador.
+- ✅ Creación del endpoint API en Astro: `src/pages/api/failed-search.ts`.
 - ✅ Implementación de "debounce" de 1 segundo en el script del 
-  buscador (`src/pages/index.astro`) para evitar saturar la base de 
-  datos con solicitudes por cada tecla pulsada.
-- ✅ Pruebas locales y en producción exitosas: las búsquedas sin 
-  resultados se guardan correctamente en Supabase como una sola entrada.
-- ✅ Despliegue exitoso a Vercel mediante flujo Git (add, commit, push).
+  buscador (`src/pages/index.astro`).
+- ✅ Pruebas locales y en producción exitosas.
+- ✅ Despliegue exitoso a Vercel mediante flujo Git.
+
+MEJORAS REALIZADAS EL 27/10/2026 (SESIÓN 13):
+- ✅ Footer legal obligatorio agregado a src/pages/planta/[id].astro.
+- ✅ Google Analytics 4 configurado e integrado en TODO el sitio (Componente: src/components/GoogleAnalytics.astro).
+
+MEJORAS REALIZADAS EL 29/10/2026 (SESIÓN 14):
+- ✅ Resolución de advertencia fiscal en Amazon Associates (Canadá): 
+  Se completó el formulario de declaración fiscal para no residentes 
+  (W-8BEN equivalente), utilizando la dirección en Chile y declarando 
+  "No" a establecimiento permanente y beneficios de tratado fiscal 
+  para simplificar el trámite y evitar retenciones complejas, dado 
+  el bajo tráfico esperado de esa región.
+- ✅ Decisión estratégica: Se posterga la configuración de Amazon 
+  OneLink. Se requiere crear cuentas de afiliado en otros países 
+  (España, México) para que sea realmente útil. Se evaluará en el 
+  futuro cuando el tráfico internacional justifique el esfuerzo 
+  burocrático.
+- ✅ Creación de cuenta gratuita en Mailchimp:
+  * Correo de la cuenta: hierbasyraices.web@gmail.com
+  * Nombre de la organización: Hierbas y Raíces
+  * Sitio web: https://hierbasyraices.com
+  * Dirección comercial (requisito legal anti-spam): Avenida 
+    Peñablanca N° 250, Algarrobo, Valparaíso, 2711725, Chile 
+    (Dirección de la Municipalidad, protegiendo la privacidad del 
+    usuario y cumpliendo la normativa).
+  * Sector seleccionado: Servicios educativos.
+  * Tamaño de audiencia: 0 contactos (inicio desde cero).
+  * Conexión e-commerce: Omitida ("Lo haré más tarde"), ya que el 
+    sitio usa Astro/Vercel y enlaces de afiliados, no checkout propio.
+- ✅ Objetivo de aprendizaje validado: Se eligió Mailchimp sobre 
+  otras alternativas (como Brevo) específicamente para que el usuario 
+  adquiera experiencia en una herramienta ampliamente solicitada en 
+  ofertas laborales (LinkedIn), sumando valor a su perfil profesional.
+
+MEJORAS REALIZADAS EL 30/10/2026 (SESIÓN 15 - HOY):
+- ✅ Eliminación permanente de cuenta de Mailchimp:
+  * Motivo: El plan gratuito NO permite automatizaciones (requiere 
+    plan Essential ~$13/mes).
+  * Proceso completado: Cuenta ID 269017731 cerrada exitosamente.
+  * Lección: Siempre verificar limitaciones del plan gratuito ANTES 
+    de diseñar flujos complejos.
+- ✅ Migración a Brevo (Sendinblue):
+  * Decisión estratégica: Brevo permite automatizaciones ILIMITADAS 
+    en el plan gratuito + 300 emails/día (vs 500/mes de Mailchimp).
+  * Cuenta creada: hierbasyraices.web@gmail.com
+  * Dirección legal configurada: Av. Peñablanca N° 250, Algarrobo, 
+    Valparaíso, 2711725, Chile.
+  * Lista de contactos creada: "Suscriptores Hierbas y Raíces #5" 
+    (carpeta: marketing_automation).
+  * Automatización "Mensaje de bienvenida" creada parcialmente:
+    - Disparador configurado: "Contacto añadido a la lista"
+    - Plazo configurado: 1 minuto (entrega inmediata)
+    - Paso 3/3 (Enviar email): PENDIENTE DE EDITAR CONTENIDO
+- ✅ Contenido del correo de bienvenida PREPARADO y listo para pegar:
+  * Nombre interno: Bienvenida - Primer artículo
+  * Asunto: ¡Bienvenido/a a Hierbas y Raíces! Tu primera planta 
+    medicinal te espera
+  * Texto de vista previa: Descubre la historia y el uso tradicional 
+    de nuestra planta destacada.
+  * Cuerpo: Mensaje de bienvenida completo con propuesta de valor.
+  * Botones: "Explorar la enciclopedia", "Ir al blog", "Ir a la Tienda"
+  * Footer legal completo con disclaimer y dirección.
 
 DESPLIEGUE Y PRODUCCIÓN:
 - Repositorio GitHub público: hierbasyraicesweb/hierbasyraices-web
@@ -300,64 +361,80 @@ TAREAS COMPLETADAS EN SESIÓN 19/10/2026:
 
 TAREAS COMPLETADAS EN SESIÓN 26/10/2026:
 ✅ 14. CONECTAR TABLA "failed_searches" AL BUSCADOR: COMPLETADO.
-    Se creó el endpoint `src/pages/api/failed-search.ts`, se 
-    implementó debounce de 1 segundo en `src/pages/index.astro` y 
-    se configuró RLS + trigger de acumulación en Supabase. 
-    Desplegado y probado en producción exitosamente.
 
-PRIORIDAD ALTA (PARA PRÓXIMAS SESIONES):
+TAREAS COMPLETADAS EN SESIÓN 27/10/2026:
+✅ 15. AGREGAR FOOTER LEGAL A FICHAS DE PLANTAS: COMPLETADO.
+✅ 16. CONFIGURAR GOOGLE ANALYTICS 4: COMPLETADO.
 
-15. AGREGAR FOOTER LEGAL A FICHAS DE PLANTAS
-    Archivo: src/pages/planta/[id].astro
-    Descripción: Copiar el footer legal (copyright + disclaimer) 
-    desde otra página (ej: index.astro) y pegarlo en 
-    planta/[id].astro para mantener consistencia visual y legal en 
-    TODAS las páginas del sitio.
-    Tiempo estimado: 15-20 minutos
-    Dificultad: Baja (copiar y pegar código existente)
-    Impacto: Alto (cumplimiento legal en todas las páginas)
+TAREAS COMPLETADAS EN SESIÓN 29/10/2026:
+✅ 17. RESOLVER ALERTA FISCAL DE AMAZON (CANADÁ): COMPLETADO.
+✅ 18. CREAR CUENTA MAILCHIMP FREE: COMPLETADO.
 
-16. CONFIGURAR GOOGLE ANALYTICS 4
-    Descripción: Crear cuenta en Google Analytics 4, obtener el 
-    ID de medición (G-XXXXXXXXXX), e integrar el script de 
-    seguimiento en todas las páginas del sitio.
-    Tiempo estimado: 20-30 minutos
-    Dificultad: Baja-Media
-    Impacto: Alto (medición de tráfico real, no solo indexación)
+TAREAS COMPLETADAS EN SESIÓN 30/10/2026 (HOY):
+✅ 19. ELIMINAR CUENTA MAILCHIMP: COMPLETADO (Cuenta ID 269017731 cerrada).
+✅ 20. CREAR CUENTA BREVO FREE: COMPLETADO (Configuración inicial, dirección legal y lista creados).
+✅ 21. CONFIGURAR AUTOMATIZACIÓN EN BREVO (PARCIAL): Disparador y plazo configurados. Pendiente editar contenido del email.
 
-17. MONITOREAR INDEXACIÓN EN GSC
-    Descripción: Monitorear en Google Search Console cuántas de 
-    las 374 páginas pasan de "Descubierta" a "Indexada". Se ha 
-    aclarado que Google no envía correos por indexación exitosa, 
-    solo por errores. Se debe revisar manualmente en la sección 
-    "Páginas" o mediante "Inspección de URL". (Estado actual: 31+ 
-    páginas indexadas, funcionando correctamente).
-    Tiempo estimado: 24-72 horas (tiempo de espera pasivo)
-    Dificultad: Nula
-    Impacto: Crítico (sin indexación no hay tráfico orgánico)
+PRIORIDAD ALTA (PARA MAÑANA - ORDEN RECOMENDADO):
 
-18. CONFIGURAR AMAZON ONELINK
-    Descripción: Configurar Amazon OneLink para redirigir 
-    compradores internacionales a su Amazon local.
+22. EDITAR EMAIL DE BIENVENIDA EN BREVO (PASO 3/3)
+    Descripción: Hacer clic en el ícono de lápiz ✏️ junto a "Enviar 
+    un email" en la automatización y pegar el contenido preparado 
+    (asunto, cuerpo, botones, footer). Eliminar elementos genéricos 
+    de la plantilla.
     Tiempo estimado: 15-20 minutos
     Dificultad: Baja
-    Impacto: Medio (mejora conversión de afiliados internacionales)
+    Impacto: Alto (correo de bienvenida profesional)
+    Estado: ⏸️ PENDIENTE (Detenido por cansancio a las 02:45 AM)
 
-19. FORMULARIO DE NEWSLETTER
-    Descripción: Integrar formulario de suscripción (Brevo o 
-    Mailchimp) en el footer para capturar emails.
-    Tiempo estimado: 30-45 minutos
-    Dificultad: Media
-    Impacto: Medio (construcción de audiencia directa)
+23. ACTIVAR AUTOMATIZACIÓN EN BREVO
+    Descripción: Hacer clic en "Activar automatización" (botón negro 
+    arriba a la derecha) una vez editado el email.
+    Tiempo estimado: 2 minutos
+    Dificultad: Baja
+    Impacto: Alto (inicio del flujo automático)
+    Estado: ⏸️ PENDIENTE
+
+24. PROBAR AUTOMATIZACIÓN
+    Descripción: Suscribirse con un correo de prueba desde el footer 
+    del sitio y verificar que el correo llegue en 1 minuto.
+    Tiempo estimado: 5 minutos
+    Dificultad: Baja
+    Impacto: Alto (validación del sistema)
+    Estado: ⏸️ PENDIENTE
+
+25. CREAR FORMULARIO DE SUSCRIPCIÓN EN BREVO
+    Descripción: Diseñar un formulario de suscripción embebible en 
+    Brevo para capturar correos en el footer del sitio.
+    Tiempo estimado: 15-20 minutos
+    Dificultad: Baja
+    Impacto: Alto (inicio de construcción de audiencia propia)
+    Estado: ⏸️ PENDIENTE
+
+26. INTEGRAR FORMULARIO EN EL FOOTER DE ASTRO
+    Descripción: Copiar el código HTML/CSS del formulario de Brevo y 
+    pegarlo en los archivos .astro del footer (index, planta/[id], 
+    blog/index, blog/[slug], tienda).
+    Tiempo estimado: 15-20 minutos
+    Dificultad: Baja
+    Impacto: Alto
+    Estado: ⏸️ PENDIENTE
 
 PRIORIDAD MEDIA:
-20. Diseño visual e imágenes: Definir flujo para obtener, optimizar y 
+27. MONITOREAR INDEXACIÓN EN GSC
+    Descripción: Monitorear en Google Search Console cuántas de 
+    las 374 páginas pasan de "Descubierta" a "Indexada". 
+    Estado: ⏸️ PENDIENTE (REVISAR DIARIAMENTE)
+
+28. Diseño visual e imágenes: Definir flujo para obtener, optimizar y 
     servir imágenes de plantas (dominio público o históricas).
-21. Google AdSense (requiere tráfico constante previo).
+
+29. Google AdSense (requiere tráfico constante previo).
 
 PRIORIDAD BAJA:
-22. Ko-fi para donaciones.
-23. PDFs descargables.
+30. Amazon OneLink (Postergado hasta que el tráfico internacional justifique la creación de cuentas fiscales en otros países).
+31. Ko-fi para donaciones.
+32. PDFs descargables.
 
 ================================================================
 8. DECISIONES TÉCNICAS CLAVE (A RESPETAR SIEMPRE)
@@ -401,7 +478,7 @@ PRIORIDAD BAJA:
 17. ⚠️ NUEVA (15/10/2026): En Vercel, el checkbox "Redirect apex 
     domains to www" DEBE ESTAR DESMARCADO para que hierbasyraices.com 
     sea el dominio principal sin redirección.
-18. ⚠️ NUEVA (15/10/2026): La configuración correcta de dominios en 
+18. ️ NUEVA (15/10/2026): La configuración correcta de dominios en 
     Vercel es: hierbasyraices.com → Production; www → Redirect 301.
 19. ⚠️ NUEVA (15/10/2026): Google tarda 24-72 horas en re-rastrear 
     un sitio después de cambios de configuración.
@@ -410,7 +487,7 @@ PRIORIDAD BAJA:
 21. ⚠️ NUEVA (19/10/2026): El usuario prefiere recibir el código 
     COMPLETO de los archivos para reemplazar, en lugar de instrucciones 
     de "comentar línea X" o "cambiar línea Y".
-22. ⚠️ NUEVA (19/10/2026): Al crear archivos con nombres que tienen 
+22. ️ NUEVA (19/10/2026): Al crear archivos con nombres que tienen 
     múltiples puntos (ej: sitemap.xml.ts), VS Code puede rechazar el 
     nombre. Solución: crear el archivo desde el Explorador de Windows.
 23. ⚠️ NUEVA (19/10/2026): Google Search Console puede mostrar "No se 
@@ -425,21 +502,46 @@ PRIORIDAD BAJA:
     de ~1 segundo) en el evento de input del buscador antes de hacer 
     llamadas a la API. Sin esto, se satura la base de datos con 
     solicitudes por cada tecla pulsada (ej: "m", "ma", "man").
-26. ⚠️ NUEVA (26/10/2026): El usuario YA TIENE EXPERIENCIA con el 
+26. ️ NUEVA (26/10/2026): El usuario YA TIENE EXPERIENCIA con el 
     flujo de trabajo de Git (git add, git commit, git push). No es 
     necesario explicar desde cero cómo funciona Git ni pedir 
     confirmación para credenciales de GitHub, a menos que aparezca 
     un error específico.
+27. ⚠️ NUEVA (27/10/2026): Google Analytics 4 puede tardar hasta 48 
+    horas en mostrar datos después de la instalación inicial, pero 
+    la verificación en "Tiempo real" puede funcionar en minutos.
+28. ⚠️ NUEVA (27/10/2026): Para integrar Google Analytics en Astro 
+    sin un layout compartido, se crea un componente reutilizable 
+    (GoogleAnalytics.astro) que se importa en cada página individual.
+29. ⚠️ NUEVA (29/10/2026): Mailchimp exige por ley (normativas 
+    anti-spam internacionales) una dirección física real en el pie 
+    de página de todos los correos. Se utilizó la dirección de la 
+    Municipalidad de Algarrobo para cumplir este requisito legal 
+    sin exponer la dirección particular del usuario.
+30. ⚠️ NUEVA (29/10/2026): Se eligió Mailchimp sobre otras 
+    alternativas (como Brevo) con el propósito estratégico de que 
+    el usuario aprenda y añada al CV una herramienta ampliamente 
+    solicitada en el mercado laboral actual.
+31. ⚠️ NUEVA (30/10/2026): Mailchimp Free NO permite automatizaciones 
+    (requiere plan Essential ~$13/mes). Siempre verificar limitaciones 
+    exactas del plan gratuito ANTES de invertir tiempo diseñando flujos.
+32. ⚠️ NUEVA (30/10/2026): Brevo Free permite automatizaciones 
+    ILIMITADAS + 300 emails/día, siendo superior a Mailchimp Free 
+    (500 emails/mes, sin automatizaciones) para proyectos que inician.
+33. ️ NUEVA (30/10/2026): Al eliminar una cuenta de Mailchimp, el 
+    proceso es irreversible pero los datos entran en ciclo de 
+    eliminación gradual. No hay recuperación posible.
 
 ================================================================
 9. ARCHIVOS CLAVE DEL PROYECTO
 ================================================================
-- Página principal: src/pages/index.astro (con footer y buscador con debounce actualizados)
+- Componente Google Analytics: src/components/GoogleAnalytics.astro (CREADO 27/10/2026)
+- Página principal: src/pages/index.astro (con Google Analytics integrado)
 - Endpoint de búsquedas fallidas: src/pages/api/failed-search.ts (CREADO 26/10/2026)
-- Ficha de planta: src/pages/planta/[id].astro (⚠️ SIN FOOTER AÚN)
-- Listado blog: src/pages/blog/index.astro (con footer actualizado)
-- Artículo blog: src/pages/blog/[slug].astro (con footer actualizado)
-- Página de tienda: src/pages/tienda.astro (con footer previo)
+- Ficha de planta: src/pages/planta/[id].astro (con footer legal y Google Analytics)
+- Listado blog: src/pages/blog/index.astro (con Google Analytics integrado)
+- Artículo blog: src/pages/blog/[slug].astro (con Google Analytics integrado)
+- Página de tienda: src/pages/tienda.astro (con Google Analytics integrado)
 - Sitemap personalizado: src/pages/sitemap.xml.ts (CREADO 19/10/2026)
 - Estilos globales: src/styles/global.css
 - Cliente de Supabase: src/lib/supabase.js
@@ -450,9 +552,6 @@ PRIORIDAD BAJA:
 NOTA: NO existe un archivo de layout compartido. Cada página (.astro)
 tiene su propia estructura HTML completa (header, body, footer).
 Por eso es CRÍTICO mantener la misma estructura de clases en todas.
-
-⚠️ PENDIENTE: Agregar footer a src/pages/planta/[id].astro (fichas 
-individuales de plantas).
 
 ================================================================
 10. MÉTRICAS ACTUALES
@@ -470,61 +569,106 @@ individuales de plantas).
 - Sitemap personalizado: ✅ FUNCIONANDO (19/10/2026) - 374 URLs
 - robots.txt: ✅ Configurado con nuevo sitemap
 - Tabla failed_searches: ✅ CONECTADA Y FUNCIONANDO (26/10/2026)
-- Páginas indexadas en Google: 31+ (confirmado manualmente en GSC el 26/10/2026).
+- Google Analytics 4: ✅ ACTIVO Y RECIBIENDO DATOS (27/10/2026)
+- Mailchimp:  ELIMINADO (30/10/2026) - No permitía automatizaciones gratis.
+- Brevo: ✅ CUENTA FREE CREADA (30/10/2026) - Automatización configurada parcialmente.
+- Páginas indexadas en Google: 31+ (confirmado manualmente en GSC).
 - Páginas descubiertas por Google: 374 (gracias al sitemap personalizado)
+- Contactos en lista Brevo: 0 (aún no hay formulario activo en la web)
+- Emails enviados: 0
+- Automatizaciones activas: 0 (pendiente de activar mañana)
+- Formularios embebidos en la web: 0
+- Dominio de email personalizado: No (actualmente usa @gmail.com)
 
 ================================================================
 11. HISTORIAL DE SESIONES (DESDE LA GÉNESIS)
 ================================================================
 
 SESIÓN 1-7: (Resumen histórico - Sesiones iniciales del proyecto)
-- Configuración inicial del proyecto Astro
-- Conexión con Supabase
-- Carga de 361 plantas en la base de datos
-- Corrección de 97 plantas vía SQL
-- Implementación del buscador inteligente
-- Diseño responsive con Tailwind + DaisyUI
-- Publicación de 9 artículos de blog
-- Creación de la tienda con 6 productos de Amazon Afiliados
-- Configuración de Amazon Associates (ID: hierbasyraice-20)
+- Configuración inicial del proyecto Astro, conexión con Supabase, 
+  carga de 361 plantas, corrección de 97 plantas vía SQL, 
+  implementación del buscador inteligente, diseño responsive, 
+  publicación de 9 artículos de blog y creación de la tienda con 
+  6 productos de Amazon Afiliados.
 
 SESIÓN 8 (03/10/2026): Dominio Conectado y Flujo de Trabajo Definido
 - Configuración exitosa de registros DNS en Namecheap.
-- Verificación en Vercel: "Valid Configuration".
-- Definición de plantillas de prompt estandarizadas.
 
 SESIÓN 9 (07/10/2026): GSC, Sitemap, Robots.txt y Footer con Copyright
 - Creación de tabla failed_searches, footer con copyright, robots.txt, 
   plugin @astrojs/sitemap y verificación en GSC.
 
 SESIÓN 10 (15/10/2026): Corrección de errores de indexación en GSC 
-- Diagnóstico y corrección de la redirección de dominios en Vercel, 
-  verificación de DNS en Namecheap, y solicitud de indexación manual.
+- Diagnóstico y corrección de la redirección de dominios en Vercel.
 
 SESIÓN 11 (19/10/2026): Creación e Implementación del Sitemap Personalizado
-- Creación de sitemap.xml.ts, desactivación del sitemap automático, 
-  actualización de robots.txt, despliegue en Vercel y envío exitoso 
+- Creación de sitemap.xml.ts, despliegue en Vercel y envío exitoso 
   a Google Search Console con 374 páginas descubiertas.
 
 SESIÓN 12 (26/10/2026): Conexión de failed_searches y Despliegue
-- OBJETIVO: Almacenar búsquedas sin resultados y aclarar dudas de GSC.
-- ACCIÓN 1: Se aclaró que GSC NO envía correos por indexación exitosa. 
-  Se verificó manualmente en GSC: 31+ páginas indexadas correctamente.
-- ACCIÓN 2: Se configuró RLS y un trigger de acumulación en la tabla 
-  `failed_searches` de Supabase.
-- ACCIÓN 3: Se creó el endpoint API `src/pages/api/failed-search.ts`.
-- ACCIÓN 4: Se actualizó `src/pages/index.astro` con lógica de 
-  búsqueda que incluye "debounce" de 1 segundo para evitar saturar 
-  la base de datos con solicitudes parciales.
-- ACCIÓN 5: Despliegue exitoso a producción mediante Git (add, commit, push).
-- RESULTADO: El sistema registra correctamente las búsquedas fallidas 
-  en producción como una sola entrada acumulada. El mensaje visual 
-  de "sin resultados" aparece debajo del contenedor del buscador 
-  (el usuario decidió dejarlo así por hoy para evitar ciclos 
-  adicionales de despliegue).
-- LECCIÓN: El usuario ya tiene experiencia con `git push`, no es 
-  necesario explicar el flujo de Git desde cero a menos que haya error.
+- Configuración de RLS y trigger de acumulación en Supabase.
+- Creación del endpoint API y debounce en el buscador.
+
+SESIÓN 13 (27/10/2026): Footer Legal en Fichas y Google Analytics 4
+- Footer legal obligatorio agregado a src/pages/planta/[id].astro.
+- Google Analytics 4 configurado e integrado en las 5 páginas del sitio.
+
+SESIÓN 14 (29/10/2026): Resolución Fiscal Amazon y Configuración de Mailchimp
+- OBJETIVO: Limpiar alertas de Amazon Associates y preparar el sistema de Newsletter.
+- ACCIÓN 1: Se completó el formulario de declaración fiscal de Canadá en Amazon Associates, declarando no residencia y simplificando el trámite, eliminando la alerta roja de la cuenta.
+- ACCIÓN 2: Se tomó la decisión estratégica de postergar Amazon OneLink, ya que requiere abrir cuentas fiscales en múltiples países y el tráfico internacional actual no justifica la burocracia.
+- ACCIÓN 3: Se creó y configuró exitosamente una cuenta gratuita en Mailchimp usando el correo del proyecto (hierbasyraices.web@gmail.com).
+- ACCIÓN 4: Se configuró la dirección legal de la Municipalidad de Algarrobo para cumplir con las normativas anti-spam de Mailchimp sin exponer la dirección particular del usuario.
+- ACCIÓN 5: Se seleccionó "Servicios educativos" como sector y se omitió la conexión de e-commerce, ya que el sitio usa Astro y enlaces de afiliados externos.
+- RESULTADO: La cuenta de Mailchimp está lista y verificada. El siguiente paso lógico es crear el formulario de suscripción e integrarlo en el footer del sitio.
+- LECCIÓN APRENDIDA: Elegir Mailchimp sobre otras alternativas (como Brevo) cumple un doble propósito: resuelve la necesidad técnica del proyecto y permite al usuario adquirir una habilidad (Mailchimp) altamente valorada y solicitada en el mercado laboral actual (LinkedIn).
+
+SESIÓN 15 (30/10/2026): Migración de Mailchimp a Brevo - Email Marketing Gratuito con Automatizaciones
+- OBJETIVO: Configurar sistema de email marketing con automatizaciones funcionales en plan gratuito.
+- ACCIÓN 1: Se intentó configurar automatización en Mailchimp, pero se descubrió que el plan gratuito BLOQUEA las automatizaciones (requiere plan Essential ~$13/mes).
+- ACCIÓN 2: Se tomó la decisión estratégica de eliminar la cuenta de Mailchimp y migrar a Brevo, que permite automatizaciones ILIMITADAS en el plan gratuito.
+- ACCIÓN 3: Se eliminó permanentemente la cuenta de Mailchimp (ID: 269017731) siguiendo el proceso completo de cierre.
+- ACCIÓN 4: Se creó cuenta gratuita en Brevo (hierbasyraices.web@gmail.com) con dirección legal de la Municipalidad de Algarrobo.
+- ACCIÓN 5: Se creó lista de contactos "Suscriptores Hierbas y Raíces #5" en carpeta marketing_automation.
+- ACCIÓN 6: Se creó automatización "Mensaje de bienvenida" en Brevo con disparador configurado (Contacto añadido a lista) y plazo de 1 minuto.
+- ACCIÓN 7: Se preparó todo el contenido del correo de bienvenida (asunto, cuerpo, botones, footer legal) listo para pegar.
+- ACCIÓN 8: Se detuvo la sesión a las 02:45 AM por cansancio, quedando pendiente editar el contenido visual del email (Paso 3/3) y activar la automatización.
+- RESULTADO: Brevo configurado parcialmente. Mañana se completará la edición del email y activación.
+- LECCIÓN APRENDIDA: Siempre verificar las limitaciones EXACTAS del plan gratuito ANTES de invertir tiempo diseñando flujos. Brevo es superior a Mailchimp para proyectos que inician: 300 emails/día + automatizaciones ilimitadas vs 500 emails/mes sin automatizaciones.
+
+Hola buenos días! Estamos trabajando en este proyecto y hoy nos toca configurar Brevo: Recuerda que solo después de la sesión de trabajo, debes entregarme el estado del proyecto en txt, histórico, más todo lo que hagamos, conversemos, errores, aciertos, apps, herramientas utilizadas, decisiones tomadas, los pendientes, etc.
 
 ================================================================
-FIN DEL DOCUMENTO MAESTRO - VERSIÓN 9.0
+12. CONTENIDO PREPARADO - CORREO DE BIENVENIDA (LISTO PARA PEGAR)
+================================================================
+NOMBRE INTERNO: Bienvenida - Primer artículo
+
+ASUNTO: ¡Bienvenido/a a Hierbas y Raíces! Tu primera planta medicinal te espera
+
+TEXTO DE VISTA PREVIA: Descubre la historia y el uso tradicional de nuestra planta destacada.
+
+CUERPO DEL CORREO:
+¡Bienvenido/a a Hierbas y Raíces!
+
+Gracias por unirte a nuestra comunidad. En Hierbas y Raíces documentamos el patrimonio etnobotánico iberoamericano: plantas medicinales con su historia, nombres tradicionales y usos culturales.
+
+Cada semana recibirás en tu correo la ficha de una planta, su historia y un artículo destacado de nuestro blog.
+
+Mientras tanto, te invitamos a explorar nuestra enciclopedia:
+
+BOTONES:
+- "Explorar la enciclopedia" -> https://hierbasyraices.com
+- "Ir al blog" -> https://hierbasyraices.com/blog
+- "Ir a la Tienda" -> https://hierbasyraices.com/tienda
+
+FOOTER LEGAL:
+© 2026 Hierbas y Raíces. Todos los derechos reservados.
+
+Esta información tiene fines históricos y culturales, y no constituye una recomendación de uso, dosis ni tratamiento. Consulte a un profesional de la salud antes de usar cualquier planta con fines terapéuticos.
+
+Correo de contacto: hierbasyraices.web@gmail.com
+Avenida Peñablanca N° 250, Algarrobo, Valparaíso, 2711725, Chile
+
+================================================================
+FIN DEL DOCUMENTO MAESTRO - VERSIÓN 12.0
 ================================================================
