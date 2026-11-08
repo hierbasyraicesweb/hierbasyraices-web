@@ -1,133 +1,12 @@
 ﻿---
-// Componente Footer - Hierbas y Raíces
+// Componente Footer - Hierbas y Raíces (Versión simplificada - sin formulario)
 // Ubicación: C:\Proyectos\hierbasyraices-web\src\components\Footer.astro
 ---
 
-<style>
-  /* Estilos personalizados para el formulario de Brevo en el footer */
-  .footer-form-container {
-    max-width: 320px;
-    margin: 0 auto;
-  }
-  
-  #sib-container {
-    border: none !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
-    border-radius: 8px !important;
-    padding: 16px !important;
-    background: white !important;
-  }
-  
-  .sib-form-block {
-    padding: 4px 0 !important;
-  }
-  
-  .sib-input input {
-    padding: 8px 12px !important;
-    font-size: 13px !important;
-    border-radius: 4px !important;
-    border: 1px solid #d1d5db !important;
-  }
-  
-  .sib-form-block__button {
-    padding: 8px 16px !important;
-    font-size: 13px !important;
-    border-radius: 4px !important;
-  }
-  
-  /* Responsive */
-  @media (max-width: 640px) {
-    .footer-form-container {
-      max-width: 100%;
-    }
-  }
-</style>
-
 <footer class="bg-[#2d5016] text-[#f5f5dc]">
   
-  <!-- Sección del formulario de suscripción -->
-  <div class="bg-[#f5f5dc] py-10 px-4">
-    <div class="max-w-4xl mx-auto">
-      <div class="sib-form" style="text-align: center;">
-        <div id="sib-form-container" class="sib-form-container">
-          
-          <!-- Contenedor del formulario -->
-          <div class="footer-form-container">
-            <div id="sib-container" class="sib-container--large sib-container--vertical" style="max-width:320px; text-align:center; background-color:rgba(255,255,255,1); border:1px solid #C0CCD9; border-radius:8px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,0.1); margin: 0 auto;">
-              <form id="sib-form" method="POST" action="https://a1782bd0.sibforms.com/serve/MUIFAMePC06LLhFXD_ZOSu0Rrx1wOlrHPl8zSFIl-aTh7kfXVEbUiSfPZOtte0GClitMdN1DFnKM_BSuomswPDDjseKNIEjNKlZTGz3drWk8h_jAIs_zuA8cRn0h9QlyeRcRvbPGV0vD3m8_hPwtKIuxxNvjKGKCH6o2aWxZGTCEOhoaelD0KkY0aGWMHMK4MFWv7pfPVDTF9lDq2A==" data-type="subscription">
-                
-                <!-- Título del formulario (ACTUALIZADO) -->
-                <div style="margin-bottom:10px;">
-                  <h3 style="font-family:Helvetica, sans-serif; font-size:15px; font-weight:700; color:#2d5016; margin:0; line-height:1.3;">
-                    🌿 Suscríbete a Hierbas y Raíces<br><span style="font-size:12px; color:#4a7c23;">(Newsletter Gratuita)</span>
-                  </h3>
-                </div>
-                
-                <!-- Descripción compacta (ACTUALIZADA) -->
-                <div style="margin-bottom:12px;">
-                  <p style="font-family:Helvetica, sans-serif; font-size:11px; color:#3C4858; line-height:1.4; margin:0;">
-                    Recibe información útil, datos curiosos y artículos destacados de nuestro blog<br>
-                    <strong>solo 1 o 2 veces al mes.</strong>
-                  </p>
-                </div>
-                
-                <!-- Campo de email -->
-                <div style="margin-bottom:10px;">
-                  <div class="sib-input sib-form-block">
-                    <div class="form__entry entry_block">
-                      <div class="form__label-row">
-                        <div class="entry__field">
-                          <input 
-                            class="input" 
-                            type="email" 
-                            id="EMAIL" 
-                            name="EMAIL" 
-                            autocomplete="email" 
-                            value="" 
-                            placeholder="Tu email" 
-                            data-required="true" 
-                            required 
-                            style="width:100%; padding:8px 12px; border:1px solid #d1d5db; border-radius:4px; font-size:13px; font-family:Helvetica, sans-serif; box-sizing:border-box;"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- reCAPTCHA v3 (invisible) -->
-                <div style="margin-bottom:10px;">
-                  <div class="g-recaptcha-v3" data-sitekey="6LdbKRQuAAAAALSvLdb9-TQ28qXx3nW4E2M0oGQR" style="display: none"></div>
-                </div>
-                
-                <!-- Botón de suscripción -->
-                <div style="margin-bottom:6px;">
-                  <div class="sib-form-block">
-                    <button 
-                      class="sib-form-block__button sib-form-block__button-with-loader" 
-                      form="sib-form" 
-                      type="submit"
-                      style="width:100%; font-family:Helvetica, sans-serif; font-size:13px; font-weight:700; text-align:center; color:#FFFFFF; background-color:#4a7c23; border:none; border-radius:4px; padding:10px 16px; cursor:pointer; transition:all 0.3s;"
-                      onmouseover="this.style.backgroundColor='#3d661e'"
-                      onmouseout="this.style.backgroundColor='#4a7c23'"
-                    >
-                      SUSCRIBIRME
-                    </button>
-                  </div>
-                </div>
-                
-                <input type="text" name="email_address_check" value="" class="input--hidden">
-                <input type="hidden" name="locale" value="es">
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
   <!-- Navegación -->
-  <div class="py-6 px-4 border-t border-[#4a7c23]">
+  <div class="py-6 px-4">
     <div class="max-w-4xl mx-auto text-center">
       <h3 class="text-lg font-bold mb-3 text-[#f5f5dc]">Explora Hierbas y Raíces</h3>
       <nav class="flex flex-wrap justify-center gap-4 text-sm">
@@ -148,15 +27,3 @@
     </div>
   </div>
 </footer>
-
-<script>
-  window.REQUIRED_CODE_ERROR_MESSAGE = 'Elige un código de país';
-  window.LOCALE = 'es';
-  window.EMAIL_INVALID_MESSAGE = "La información que has proporcionado no es válida. Compruebe el formato del campo e inténtalo de nuevo.";
-  window.REQUIRED_ERROR_MESSAGE = "Este campo no puede quedarse vacío. ";
-  window.GENERIC_INVALID_MESSAGE = "La información que has proporcionado no es válida. Compruebe el formato del campo e inténtalo de nuevo.";
-  window.translation = { common: { selectedList: '{quantity} lista seleccionada', selectedLists: '{quantity} listas seleccionadas' } };
-  var AUTOHIDE = Boolean(0);
-</script>
-<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-<script src="https://www.google.com/recaptcha/api.js?render=6LdbKRQuAAAAALSvLdb9-TQ28qXx3nW4E2M0oGQR&hl=es" async defer></script>
