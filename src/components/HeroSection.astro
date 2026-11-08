@@ -1,21 +1,38 @@
 ---
-// Componente HeroSection - Cabecera con formulario de suscripción (usando iframe de Brevo)
+// Componente HeroSection - Cabecera con formulario de suscripción
 // Ubicación: C:\Proyectos\hierbasyraices-web\src\components\HeroSection.astro
 ---
 
 <style>
-  /* Estilos personalizados para el contenedor del iframe en el hero */
+  /* Estilos personalizados para el formulario en el hero */
   .hero-form-container {
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
   }
   
-  .brevo-iframe {
-    width: 100%;
-    height: 480px;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  #sib-container {
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+    border-radius: 8px !important;
+    padding: 16px !important;
+    background: white !important;
+  }
+  
+  .sib-form-block {
+    padding: 4px 0 !important;
+  }
+  
+  .sib-input input {
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    border-radius: 4px !important;
+    border: 1px solid #d1d5db !important;
+  }
+  
+  .sib-form-block__button {
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+    border-radius: 4px !important;
   }
   
   /* Responsive */
@@ -49,10 +66,6 @@
     
     .hero-form-container {
       max-width: 100%;
-    }
-    
-    .brevo-iframe {
-      height: 500px;
     }
   }
 </style>
@@ -101,18 +114,149 @@
       
       <!-- Lado derecho: Formulario de suscripción (ocupa 4 columnas de 12) -->
       <div class="hero-form-container lg:col-span-4">
-        <iframe 
-          width="100%" 
-          height="480" 
-          src="https://a1782bd0.sibforms.com/v2/serve/MUIFAMePC06LLhFXD_ZOSu0Rrx1wOlrHPl8zSFIl-aTh7kfXVEbUiSfPZOtte0GClitMdN1DFnKM_BSuomswPDDjseKNIEjNKlZTGz3drWk8h_jAIs_zuA8cRn0h9QlyeRcRvbPGV0vD3m8_hPwtKIuxxNvjKGKCH6o2aWxZGTCEOhoaelD0KkY0aGWMHMK4MFWv7pfPVDTF9lDq2A==" 
-          frameborder="0" 
-          scrolling="auto" 
-          allowfullscreen 
-          class="brevo-iframe"
-          title="Formulario de suscripción Hierbas y Raíces">
-        </iframe>
+        <div id="form-success" style="display:none; padding:12px; border-radius:4px; margin-bottom:10px; text-align:center; font-size:13px; font-family:Helvetica, sans-serif; background-color:#e7faf0; color:#085229; border:1px solid #13ce66;">
+          ✓ Se ha realizado tu suscripción.
+        </div>
+        
+        <div id="form-error" style="display:none; padding:12px; border-radius:4px; margin-bottom:10px; text-align:center; font-size:13px; font-family:Helvetica, sans-serif; background-color:#ffeded; color:#661d1d; border:1px solid #ff4949;">
+          Error al suscribirse. Intenta de nuevo.
+        </div>
+        
+        <div class="sib-form">
+          <div id="sib-container" class="sib-container--large sib-container--vertical" style="max-width:300px; text-align:center; background-color:rgba(255,255,255,1); border:1px solid #C0CCD9; border-radius:8px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,0.1); margin: 0 auto;">
+            <form id="sib-form" method="POST" action="https://a1782bd0.sibforms.com/serve/MUIFAMePC06LLhFXD_ZOSu0Rrx1wOlrHPl8zSFIl-aTh7kfXVEbUiSfPZOtte0GClitMdN1DFnKM_BSuomswPDDjseKNIEjNKlZTGz3drWk8h_jAIs_zuA8cRn0h9QlyeRcRvbPGV0vD3m8_hPwtKIuxxNvjKGKCH6o2aWxZGTCEOhoaelD0KkY0aGWMHMK4MFWv7pfPVDTF9lDq2A==" data-type="subscription">
+              
+              <!-- Título del formulario -->
+              <div style="margin-bottom:10px;">
+                <h3 style="font-family:Helvetica, sans-serif; font-size:15px; font-weight:700; color:#2d5016; margin:0; line-height:1.3;">
+                  🌿 Suscríbete a Hierbas y Raíces<br><span style="font-size:12px; color:#4a7c23;">(Newsletter Gratuita)</span>
+                </h3>
+              </div>
+              
+              <!-- Descripción compacta -->
+              <div style="margin-bottom:12px;">
+                <p style="font-family:Helvetica, sans-serif; font-size:11px; color:#3C4858; line-height:1.4; margin:0;">
+                  Recibe información útil, datos curiosos y artículos destacados de nuestro blog<br>
+                  <strong>solo 1 o 2 veces al mes.</strong>
+                </p>
+              </div>
+              
+              <!-- Campo de email -->
+              <div style="margin-bottom:10px;">
+                <div class="sib-input sib-form-block">
+                  <div class="form__entry entry_block">
+                    <div class="form__label-row">
+                      <div class="entry__field">
+                        <input 
+                          class="input" 
+                          type="email" 
+                          id="EMAIL" 
+                          name="EMAIL" 
+                          autocomplete="email" 
+                          value="" 
+                          placeholder="Tu email" 
+                          data-required="true" 
+                          required 
+                          style="width:100%; padding:8px 12px; border:1px solid #d1d5db; border-radius:4px; font-size:13px; font-family:Helvetica, sans-serif; box-sizing:border-box;"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- reCAPTCHA v3 (invisible) -->
+              <div style="margin-bottom:10px;">
+                <div class="g-recaptcha-v3" data-sitekey="6LdbKRQuAAAAALSvLdb9-TQ28qXx3nW4E2M0oGQR" style="display: none"></div>
+              </div>
+              
+              <!-- Botón de suscripción -->
+              <div style="margin-bottom:6px;">
+                <div class="sib-form-block">
+                  <button 
+                    class="sib-form-block__button sib-form-block__button-with-loader" 
+                    id="submit-btn"
+                    type="submit"
+                    style="width:100%; font-family:Helvetica, sans-serif; font-size:13px; font-weight:700; text-align:center; color:#FFFFFF; background-color:#4a7c23; border:none; border-radius:4px; padding:10px 16px; cursor:pointer; transition:all 0.3s;"
+                    onmouseover="this.style.backgroundColor='#3d661e'"
+                    onmouseout="this.style.backgroundColor='#4a7c23'"
+                  >
+                    SUSCRIBIRME
+                  </button>
+                </div>
+              </div>
+              
+              <input type="text" name="email_address_check" value="" class="input--hidden">
+              <input type="hidden" name="locale" value="es">
+            </form>
+          </div>
+        </div>
       </div>
       
     </div>
   </div>
 </section>
+
+<!-- reCAPTCHA v3 -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LdbKRQuAAAAALSvLdb9-TQ28qXx3nW4E2M0oGQR&hl=es" async defer></script>
+
+<script>
+  // Manejo del formulario con fetch y reCAPTCHA v3
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('sib-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const successMsg = document.getElementById('form-success');
+    const errorMsg = document.getElementById('form-error');
+    
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('EMAIL').value;
+        
+        // Mostrar estado de carga
+        submitBtn.textContent = 'Enviando...';
+        submitBtn.disabled = true;
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+        
+        // Obtener token de reCAPTCHA v3
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6LdbKRQuAAAAALSvLdb9-TQ28qXx3nW4E2M0oGQR', {action: 'submit'}).then(function(token) {
+            // Preparar datos
+            const formData = new FormData();
+            formData.append('EMAIL', email);
+            formData.append('locale', 'es');
+            formData.append('email_address_check', '');
+            formData.append('g-recaptcha-response', token);
+            
+            // Enviar al endpoint de Brevo
+            fetch(form.action, {
+              method: 'POST',
+              body: formData,
+              mode: 'no-cors'
+            })
+            .then(() => {
+              // Mostrar mensaje de éxito
+              successMsg.style.display = 'block';
+              form.reset();
+              submitBtn.textContent = 'SUSCRIBIRME';
+              submitBtn.disabled = false;
+              
+              // Ocultar mensaje después de 5 segundos
+              setTimeout(() => {
+                successMsg.style.display = 'none';
+              }, 5000);
+            })
+            .catch((error) => {
+              // Mostrar mensaje de error
+              errorMsg.style.display = 'block';
+              submitBtn.textContent = 'SUSCRIBIRME';
+              submitBtn.disabled = false;
+            });
+          });
+        });
+      });
+    }
+  });
+</script>
