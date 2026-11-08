@@ -1,13 +1,13 @@
 ---
-// Componente reutilizable para Google Analytics 4
+// Componente GoogleAnalytics - Integración de Google Analytics 4
+// Ubicación: C:\Proyectos\hierbasyraices-web\src\components\GoogleAnalytics.astro
 ---
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7F56LTF9QY"></script>
-<script>
+<script is:inline>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-7F56LTF9QY');
 </script>
