@@ -1,11 +1,10 @@
----
+﻿---
 import { supabase } from '../../lib/supabase';
 import '../../styles/global.css';
 import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
 import HeroSection from '../../components/HeroSection.astro';
 import Footer from '../../components/Footer.astro';
 
-// Obtener artículos del blog
 const { data: posts, error } = await supabase
   .from('blog_posts')
   .select('*')
@@ -24,13 +23,12 @@ if (error) {
   <GoogleAnalytics />
 </head>
 <body class="bg-[#f5f5dc] flex flex-col min-h-screen">
-  
-  <!-- NUEVA CABECERA CON FORMULARIO DE SUSCRIPCIÓN A LA DERECHA -->
-  <HeroSection 
-    title="Blog Hierbas y Raíces" 
-    subtitle="Descubre los secretos, historia y usos tradicionales<br>de las plantas medicinales." 
-    showBackButton={true} 
-    showShopButton={true} 
+
+  <HeroSection
+    title="Blog Hierbas y Raíces"
+    subtitle="Descubre los secretos, historia y usos tradicionales<br>de las plantas medicinales."
+    showBackButton={true}
+    showShopButton={true}
   />
 
   <main class="flex-grow">
@@ -38,30 +36,39 @@ if (error) {
       <div class="max-w-4xl mx-auto grid gap-8">
         {posts?.map((post) => (
           <article class="bg-white rounded-xl shadow-lg p-6 border-2 border-[#c8e6c9] hover:border-[#81c784] transition-all">
-            <span class="inline-block bg-[#dcedc8] text-[#33691e] text-xs px-3 py-1 rounded-full mb-3">
-              {post.tags || 'General'}
-            </span>
+
+            <div class="flex flex-wrap gap-2 mb-3">
+              {post.tags && post.tags.length > 0 ? (
+                (Array.isArray(post.tags) ? post.tags : String(post.tags).split(',')).map((tag) => (
+                  <span class="inline-block bg-[#dcedc8] text-[#33691e] text-xs px-3 py-1 rounded-full capitalize">
+                    {tag.trim()}
+                  </span>
+                ))
+              ) : (
+                <span class="inline-block bg-[#dcedc8] text-[#33691e] text-xs px-3 py-1 rounded-full">General</span>
+              )}
+            </div>
+
             <h2 class="text-2xl font-bold text-[#33691e] mb-2">
               <a href={`/blog/${post.slug}`} class="hover:underline">{post.title}</a>
             </h2>
-            <p class="text-gray-600 mb-4">{post.excerpt || 'Haz clic para leer más sobre esta planta medicinal.'}</p>
+            <p class="text-gray-600 mb-4">{post.excerpt || 'Haz clic para leer mas sobre esta planta medicinal.'}</p>
             <div class="flex justify-between items-center text-sm text-gray-500">
               <span>
                 {post.published_at ? new Date(post.published_at).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Fecha no disponible'}
               </span>
-              <a href={`/blog/${post.slug}`} class="text-[#558b2f] font-semibold hover:underline">Leer artículo completo →</a>
+              <a href={`/blog/${post.slug}`} class="text-[#558b2f] font-semibold hover:underline">Leer articulo completo</a>
             </div>
           </article>
         ))}
-        
+
         {(!posts || posts.length === 0) && (
-          <p class="text-center text-gray-600 text-lg">Aún no hay artículos publicados. ¡Vuelve pronto!</p>
+          <p class="text-center text-gray-600 text-lg">Aun no hay articulos publicados. Vuelve pronto!</p>
         )}
       </div>
     </section>
   </main>
 
-  <!-- FOOTER UNIFICADO CON DISCLAIMER Y FORMULARIO -->
   <Footer />
 
 </body>

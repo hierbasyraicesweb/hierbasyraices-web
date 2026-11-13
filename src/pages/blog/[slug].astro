@@ -1,4 +1,4 @@
----
+﻿---
 import { supabase } from '../../lib/supabase';
 import '../../styles/global.css';
 import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
@@ -48,7 +48,6 @@ const canonicalURL = `https://hierbasyraices.com/blog/${post.slug}`;
   <link rel="canonical" href={canonicalURL} />
   <GoogleAnalytics />
   
-  <!-- Estilos para que el texto del blog se vea bonito (Movido al head para estructura HTML válida) -->
   <style is:global>
     .prose p { margin-bottom: 1.25rem; line-height: 1.7; }
     .prose h2 { color: #33691e; font-size: 1.75rem; font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #dcedc8; padding-bottom: 0.5rem; }
@@ -71,9 +70,19 @@ const canonicalURL = `https://hierbasyraices.com/blog/${post.slug}`;
 
   <article class="max-w-4xl mx-auto py-12 px-4 bg-white shadow-xl my-8 rounded-xl border border-[#c8e6c9]">
     <header class="mb-8 border-b border-gray-200 pb-6">
-      <span class="inline-block bg-[#dcedc8] text-[#33691e] text-xs px-3 py-1 rounded-full mb-4">
-        {post.tags || 'Herbolaria Tradicional'}
-      </span>
+      
+      <div class="flex flex-wrap gap-2 mb-4">
+        {post.tags && post.tags.length > 0 ? (
+          (Array.isArray(post.tags) ? post.tags : String(post.tags).split(',')).map((tag) => (
+            <span class="inline-block bg-[#dcedc8] text-[#33691e] text-xs px-3 py-1 rounded-full capitalize">
+              {tag.trim()}
+            </span>
+          ))
+        ) : (
+          <span class="inline-block bg-[#dcedc8] text-[#33691e] text-xs px-3 py-1 rounded-full">Herbolaria Tradicional</span>
+        )}
+      </div>
+
       <h1 class="text-3xl md:text-4xl font-bold text-[#2d5016] mb-4">{post.title}</h1>
       <div class="flex items-center text-sm text-gray-500 gap-4">
         <time datetime={post.published_at}>
@@ -91,7 +100,6 @@ const canonicalURL = `https://hierbasyraices.com/blog/${post.slug}`;
       />
     )}
 
-    <!-- AQUÍ ESTÁ LA CLAVE: set:html hace que el texto con formato se lea perfectamente -->
     <div class="prose prose-lg max-w-none text-gray-800 leading-relaxed" set:html={post.content} />
 
     <div class="mt-12 pt-6 border-t border-gray-200">
@@ -102,7 +110,6 @@ const canonicalURL = `https://hierbasyraices.com/blog/${post.slug}`;
     </div>
   </article>
 
-  <!-- FOOTER GLOBAL CON COPYRIGHT Y DISCLAIMER LEGAL -->
   <footer class="bg-[#e8f0e3] border-t-2 border-[#c8e6c9] py-8 px-4 mt-12">
     <div class="max-w-4xl mx-auto text-center">
       <p class="text-[#2d5016] font-semibold mb-3">© 2026 Hierbas y Raíces. Todos los derechos reservados.</p>
