@@ -1,20 +1,26 @@
 [
   {
     "id_youtube": "CgtXUNZeEhY",
-    "titulo": "Áloe Vera: Historia, Usos Tradicionales y Preparación",
-    "fecha": "2026-11-20",
-    "descripcion": "La historia milenaria del áloe vera, llamada 'la planta de la inmortalidad' desde el antiguo Egipto hasta hoy."
+    "titulo": "Áloe Vera: Historia, Usos Tradicionales y Preparación | Hierbas y Raíces",
+    "fecha": "19 de noviembre de 2026",
+    "descripcion_corta": "Conoce la historia milenaria del áloe vera, sus usos tradicionales y cómo prepararlo de forma segura."
   },
   {
     "id_youtube": "zNqOEb9dHTI",
-    "titulo": "Trío de la Calma: Valeriana, Lavanda y Manzanilla para Dormir",
-    "fecha": "2026-11-21",
-    "descripcion": "Tres plantas relajantes que la herbolaria iberoamericana usó durante siglos para conciliar el sueño."
+    "titulo": "El Trío de la Calma: Valeriana, Lavanda y Manzanilla para Dormir | Hierbas y Raíces",
+    "fecha": "20 de noviembre de 2026",
+    "descripcion_corta": "Descubre cómo la valeriana, lavanda y manzanilla han sido usadas tradicionalmente para favorecer el descanso."
   },
   {
     "id_youtube": "MNNkL_DB6cM",
-    "titulo": "Trío Digestivo: Menta, Manzanilla y Jengibre para el Estómago",
-    "fecha": "2026-11-21",
-    "descripcion": "Tres plantas fundamentales para aliviar malestares estomacales y mejorar la digestión de forma ancestral."
+    "titulo": "El Trío Digestivo: Menta, Manzanilla y Jengibre para el Estómago | Hierbas y Raíces",
+    "fecha": "20 de noviembre de 2026",
+    "descripcion_corta": "Explora las propiedades tradicionales de la menta, manzanilla y jengibre como aliados naturales de la digestión."
+  },
+  {
+    "id_youtube": "cZ8EbwNSpaU",
+    "titulo": "Boldo: El Digestivo y Protector del Hígado de Chile | Hierbas y Raíces",
+    "fecha": "24 de noviembre de 2026",
+    "descripcion_corta": "Descubre la historia del boldo, la planta sagrada de los mapuches que se convirtió en el digestivo más usado de Chile."
   }
 ]
