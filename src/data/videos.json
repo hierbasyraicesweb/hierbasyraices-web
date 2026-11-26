@@ -2,25 +2,31 @@
   {
     "id_youtube": "CgtXUNZeEhY",
     "titulo": "Áloe Vera: Historia, Usos Tradicionales y Preparación | Hierbas y Raíces",
-    "fecha": "19 de noviembre de 2026",
-    "descripcion_corta": "Conoce la historia milenaria del áloe vera, sus usos tradicionales y cómo prepararlo de forma segura."
+    "fecha": "19/11/2026",
+    "descripcion_corta": "Descubre la historia, usos tradicionales y preparación del Áloe Vera en la herbolaria."
   },
   {
     "id_youtube": "zNqOEb9dHTI",
     "titulo": "El Trío de la Calma: Valeriana, Lavanda y Manzanilla para Dormir | Hierbas y Raíces",
-    "fecha": "20 de noviembre de 2026",
-    "descripcion_corta": "Descubre cómo la valeriana, lavanda y manzanilla han sido usadas tradicionalmente para favorecer el descanso."
+    "fecha": "20/11/2026",
+    "descripcion_corta": "Conoce cómo la valeriana, lavanda y manzanilla se unen para promover un descanso profundo."
   },
   {
     "id_youtube": "MNNkL_DB6cM",
     "titulo": "El Trío Digestivo: Menta, Manzanilla y Jengibre para el Estómago | Hierbas y Raíces",
-    "fecha": "20 de noviembre de 2026",
-    "descripcion_corta": "Explora las propiedades tradicionales de la menta, manzanilla y jengibre como aliados naturales de la digestión."
+    "fecha": "20/11/2026",
+    "descripcion_corta": "Alivia las molestias estomacales con este poderoso trío de la herbolaria tradicional."
   },
   {
     "id_youtube": "cZ8EbwNSpaU",
     "titulo": "Boldo: El Digestivo y Protector del Hígado de Chile | Hierbas y Raíces",
-    "fecha": "24 de noviembre de 2026",
-    "descripcion_corta": "Descubre la historia del boldo, la planta sagrada de los mapuches que se convirtió en el digestivo más usado de Chile."
+    "fecha": "24/11/2026",
+    "descripcion_corta": "Explora la historia y los usos tradicionales del boldo, el guardián del hígado en la herbolaria chilena."
+  },
+  {
+    "id_youtube": "WKwaI3IOPok",
+    "titulo": "La Madre, el Niño y el Secreto de la Manzanilla Silvestre | Hierbas y Raíces",
+    "fecha": "26/11/2026",
+    "descripcion_corta": "Una historia animada sobre el poder de la naturaleza y la sabiduría ancestral para calmar el dolor de estómago con manzanilla silvestre."
   }
 ]
